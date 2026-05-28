@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Future You Simulator</title>
+<style>
+body {
+    font-family: Arial;
+    background: #0f172a;
+    color: white;
+    text-align: center;
+}
+.container {
+    margin-top: 50px;
+}
+input, select, button {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+}
+button {
+    background: #22c55e;
+    color: white;
+    cursor: pointer;
+}
+#chat {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #444;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Future You Simulator 🚀</h1>
+
+<input type="text" id="name" placeholder="Enter your name"><br>
+
+<select id="habit">
+<option value="good">I study/code daily</option>
+<option value="average">Sometimes productive</option>
+<option value="bad">Mostly procrastinate</option>
+</select><br>
+
+<select id="years">
+<option value="1">1 Year</option>
+<option value="5">5 Years</option>
+<option value="10">10 Years</option>
+</select><br>
+
+<select id="mode">
+<option value="funny">Funny</option>
+<option value="strict">Strict</option>
+<option value="motivational">Motivational</option>
+</select><br>
+
+<button onclick="generateFuture()">Talk to Future Me</button>
+
+<div id="chat"></div>
+</div>
+
+<script>
+function generateFuture() {
+    let name = document.getElementById("name").value;
+    let habit = document.getElementById("habit").value;
+    let years = document.getElementById("years").value;
+    let mode = document.getElementById("mode").value;
+
+    let score = 0;
+    if (habit === "good") score = 5;
+    else if (habit === "average") score = 2;
+    else score = -3;
+
+    let message = "";
+
+    if (score > 3) {
+        message = `Hey ${name}, I'm you after ${years} years 😎. Life is great! Your consistency paid off. Keep going!`;
+    } else if (score >= 0) {
+        message = `Hey ${name}, it's your future self. Things are okay, but you could have done better 😐.`;
+    } else {
+        message = `Hey ${name}... I'm you after ${years} years 😢. You kept procrastinating. Please change now.`;
+    }
+
+    if (mode === "funny") message += " 😂 Also, you still scroll reels too much!";
+    if (mode === "strict") message += " ⚠️ Fix your habits immediately.";
+    if (mode === "motivational") message += " 💪 You still have time to improve!";
+
+    document.getElementById("chat").innerText = message;
+}
+</script>
+</body>
+</html>
