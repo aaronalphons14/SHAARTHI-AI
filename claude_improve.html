@@ -1,0 +1,2509 @@
+cat > /home/claude/saarthi_improved.html << 'HTMLEOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saarthi — Royal Inclusive AI Ecosystem for Bharat</title>
+<meta name="description" content="Saarthi is India's emotionally intelligent, voice-first digital companion that simplifies technology and empowers homemakers, seniors, students, and entrepreneurs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Poppins:wght@300;400;500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ═══════════════════════════════════════════════
+     1. DESIGN SYSTEM & CSS VARIABLES
+     ═══════════════════════════════════════════════ */
+  :root {
+    --royal-indigo:     #1E1F57;
+    --royal-indigo-deep:#13144A;
+    --royal-indigo-mid: #2B2D80;
+    --imperial-gold:    #D4AF37;
+    --imperial-gold-lt: #E8C84A;
+    --imperial-gold-glow: rgba(212,175,55,0.3);
+    --pearl-ivory:      #FFFDF9;
+    --warm-ivory:       #FFF8EE;
+    --theme-primary: var(--royal-indigo);
+    --theme-secondary: var(--imperial-gold);
+    --theme-accent: var(--royal-indigo-mid);
+    --theme-bg: var(--pearl-ivory);
+    --theme-card-bg: #ffffff;
+    --theme-border: rgba(212,175,55,0.25);
+    --theme-text: #1a1a3e;
+    --theme-shadow: 0 20px 48px rgba(30,31,87,0.1);
+    --sidebar-width: 280px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--pearl-ivory);
+    color: #1a1a3e;
+    overflow-x: hidden;
+    transition: background 0.5s ease, color 0.5s ease;
+  }
+
+  /* ── UTILITY ── */
+  .hidden { display: none !important; }
+  .flex { display: flex; }
+  .flex-col { flex-direction: column; }
+  .items-center { align-items: center; }
+  .justify-center { justify-content: center; }
+  .justify-between { justify-content: space-between; }
+  .grid { display: grid; }
+  .text-center { text-align: center; }
+  .relative { position: relative; }
+  .absolute { position: absolute; }
+  .fixed { position: fixed; }
+  .w-full { width: 100%; }
+  .h-full { height: 100%; }
+  .cursor-pointer { cursor: pointer; }
+  .transition-all { transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
+  .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0; }
+
+  /* ── TYPOGRAPHY ── */
+  .font-royal { font-family: 'Cinzel', serif; font-weight: 700; }
+  .font-body { font-family: 'Nunito', sans-serif; }
+  .gradient-gold {
+    background: linear-gradient(135deg, var(--imperial-gold-lt), var(--imperial-gold), #b8860b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── MANDALA WATERMARKS ── */
+  .mandala-watermark {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    border: 1px solid var(--theme-border);
+    opacity: 0.15;
+  }
+
+  /* ── BUTTONS ── */
+  .btn {
+    border: none;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  .btn-royal {
+    background: linear-gradient(135deg, var(--imperial-gold-lt) 0%, var(--imperial-gold) 50%, #c49b2e 100%);
+    color: var(--royal-indigo-deep);
+  }
+  .btn-royal:hover { transform: translateY(-2px); box-shadow: 0 8px 24px var(--imperial-gold-glow); }
+  .btn-royal:focus-visible { outline: 3px solid var(--imperial-gold); outline-offset: 3px; }
+  .btn-outline {
+    background: transparent;
+    color: var(--theme-primary);
+    border: 2px solid var(--theme-primary);
+  }
+  .btn-outline:hover { background: var(--theme-primary); color: #fff; transform: translateY(-2px); }
+  .btn-outline:focus-visible { outline: 3px solid var(--theme-primary); outline-offset: 3px; }
+  .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--theme-card-bg);
+    border: 1px solid var(--theme-border);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: var(--theme-shadow);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 15px 35px rgba(0,0,0,0.08); }
+
+  /* ── INPUTS ── */
+  .input {
+    width: 100%;
+    padding: 14px 20px;
+    border: 2px solid var(--theme-border);
+    border-radius: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    background: #fff;
+    color: var(--theme-text);
+    transition: all 0.3s;
+  }
+  .input:focus { border-color: var(--theme-primary); box-shadow: 0 0 0 4px rgba(212,175,55,0.15); }
+  .input::placeholder { color: #aaa; }
+  .input.error { border-color: #ef4444; }
+  .field-error { color: #ef4444; font-size: 0.75rem; margin-top: 4px; display: block; }
+
+  /* ═══════════════════════════════════════════════
+     2. ANIMATIONS
+     ═══════════════════════════════════════════════ */
+  @keyframes rotate-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes rotate-reverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); opacity: 1; filter: drop-shadow(0 0 10px rgba(212,175,55,0.4)); }
+    50% { transform: scale(1.05); opacity: 0.85; filter: drop-shadow(0 0 25px rgba(212,175,55,0.7)); }
+  }
+  @keyframes wave { 0%, 100% { height: 6px; } 50% { height: 28px; } }
+  @keyframes pulse-ring { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(1.6); opacity: 0; } }
+  @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
+  @keyframes slideInUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes progress-bar { from { width: 0%; } to { width: var(--target-width, 85%); } }
+
+  .anim-rotate { animation: rotate-slow 25s linear infinite; }
+  .anim-rotate-rev { animation: rotate-reverse 20s linear infinite; }
+  .anim-breathe { animation: breathe 3s ease-in-out infinite; }
+  .anim-float { animation: float 5s ease-in-out infinite; }
+  .anim-slide-up { animation: slideInUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) both; }
+  .anim-fade { animation: fadeIn 0.5s ease both; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+
+  /* ═══════════════════════════════════════════════
+     3. SPLASH SCREEN
+     ═══════════════════════════════════════════════ */
+  #splash-screen {
+    position: fixed; inset: 0;
+    background: linear-gradient(135deg, #0A0B2E 0%, #1E1F57 40%, #13144A 80%, #050517 100%);
+    z-index: 9999;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+  #splash-screen.fade-out { opacity: 0; visibility: hidden; }
+  .splash-mandala { position: absolute; width: 600px; height: 600px; border: 2px solid rgba(212,175,55,0.15); border-radius: 50%; }
+  .splash-logo-container { position: relative; z-index: 10; text-align: center; }
+  .splash-emblem { width: 120px; height: 120px; margin: 0 auto 24px; animation: breathe 3s ease-in-out infinite; }
+  .splash-title { font-size: 3.5rem; letter-spacing: 5px; margin-bottom: 8px; color: #fff; }
+  .splash-tagline { font-size: 0.95rem; color: rgba(255,253,249,0.7); letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
+  .splash-dots { display: flex; gap: 8px; margin-top: 36px; justify-content: center; }
+  .splash-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--imperial-gold); animation: breathe 1.2s ease-in-out infinite; }
+  .splash-dot:nth-child(2) { animation-delay: 0.2s; }
+  .splash-dot:nth-child(3) { animation-delay: 0.4s; }
+
+  /* ═══════════════════════════════════════════════
+     4. NAVBAR
+     ═══════════════════════════════════════════════ */
+  #navbar {
+    position: fixed; top: 0; left: 0; right: 0; height: 72px;
+    background: rgba(255,253,249,0.93);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1.5px solid rgba(212,175,55,0.25);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; z-index: 900;
+    box-shadow: 0 4px 30px rgba(30,31,87,0.06);
+    transition: all 0.3s;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; cursor: pointer; }
+  .nav-logo-icon { width: 44px; height: 44px; filter: drop-shadow(0 0 6px var(--imperial-gold-glow)); }
+  .nav-title { font-size: 1.6rem; color: var(--royal-indigo); letter-spacing: 1px; }
+  .nav-title span { color: var(--imperial-gold); }
+  .nav-tagline { font-size: 0.65rem; color: #5a5a8a; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-top: -3px; }
+  .nav-menu { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .nav-menu a {
+    text-decoration: none; color: #5a5a8a; font-weight: 600; font-size: 0.95rem;
+    position: relative; padding: 8px 0; transition: color 0.3s;
+  }
+  .nav-menu a:hover, .nav-menu a.active { color: var(--royal-indigo); }
+  .nav-menu a::after {
+    content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+    background: var(--imperial-gold); transition: width 0.3s ease;
+  }
+  .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
+  .nav-actions { display: flex; align-items: center; gap: 16px; }
+  .nav-lang-picker {
+    padding: 8px 16px; border-radius: 50px; border: 1.5px solid var(--theme-border);
+    background: transparent; font-weight: 600; color: var(--theme-primary);
+    cursor: pointer; font-family: 'Poppins', sans-serif;
+  }
+  .profile-badge {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(212,175,55,0.1); border: 1.5px solid var(--imperial-gold);
+    padding: 6px 14px; border-radius: 50px; cursor: pointer;
+  }
+  .profile-avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--imperial-gold);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 0.8rem; color: var(--royal-indigo-deep);
+  }
+  /* Mobile hamburger */
+  .nav-hamburger {
+    display: none; background: none; border: none; cursor: pointer;
+    padding: 8px; color: var(--royal-indigo);
+  }
+  .nav-hamburger span { display: block; width: 24px; height: 2px; background: currentColor; margin: 5px 0; transition: 0.3s; }
+
+  /* ═══════════════════════════════════════════════
+     5. HERO LANDING PAGE
+     ═══════════════════════════════════════════════ */
+  #page-landing {
+    min-height: 100vh; padding-top: 72px;
+    background: linear-gradient(155deg, #0C0E36 0%, #1A1B54 40%, #25287B 80%, #15164B 100%);
+    position: relative; overflow: hidden; color: #fff; display: flex; align-items: center;
+  }
+  .landing-mandala-1 { top: -150px; right: -150px; width: 600px; height: 600px; }
+  .landing-mandala-2 { bottom: -150px; left: -150px; width: 500px; height: 500px; }
+  .landing-content {
+    max-width: 1280px; margin: 0 auto; width: 100%;
+    padding: 60px 40px;
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px;
+    position: relative; z-index: 10;
+  }
+  .landing-badge {
+    background: rgba(212,175,55,0.15); border: 1.5px solid var(--imperial-gold);
+    color: var(--imperial-gold-lt); padding: 8px 20px; border-radius: 50px;
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    display: inline-flex; margin-bottom: 24px;
+  }
+  .landing-title { font-size: 3.8rem; line-height: 1.15; margin-bottom: 24px; }
+  .landing-title span {
+    background: linear-gradient(135deg, var(--imperial-gold-lt), var(--imperial-gold), #b58909);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .landing-desc { font-size: 1.1rem; color: rgba(255,253,249,0.78); line-height: 1.7; margin-bottom: 36px; max-width: 580px; }
+  .landing-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+  .trust-row { display: flex; align-items: center; gap: 16px; }
+  .trust-avatars { display: flex; }
+  .trust-avatar {
+    width: 40px; height: 40px; border-radius: 50%; border: 2.5px solid var(--royal-indigo);
+    background: var(--imperial-gold); color: var(--royal-indigo-deep);
+    font-weight: 800; font-size: 0.85rem;
+    display: flex; align-items: center; justify-content: center; margin-left: -12px;
+  }
+  .trust-avatar:first-child { margin-left: 0; }
+  .trust-text { font-size: 0.85rem; color: rgba(255,253,249,0.65); line-height: 1.4; }
+  .trust-text strong { color: var(--imperial-gold-lt); }
+  .landing-cards { display: flex; flex-direction: column; gap: 20px; align-items: flex-end; }
+  .hero-voice-card {
+    background: rgba(255,253,249,0.08); border: 1.5px solid rgba(212,175,55,0.3);
+    backdrop-filter: blur(20px); border-radius: 28px; padding: 28px;
+    width: 100%; max-width: 400px; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  }
+  .hero-card-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .hero-card-avatar {
+    width: 54px; height: 54px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--imperial-gold-lt), var(--imperial-gold));
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 20px rgba(212,175,55,0.4); animation: breathe 3s ease-in-out infinite;
+  }
+  .hero-card-avatar svg { width: 28px; height: 28px; fill: var(--royal-indigo-deep); }
+  .hero-card-name { font-weight: 700; font-size: 1.1rem; color: #fff; }
+  .hero-card-status { font-size: 0.78rem; color: var(--imperial-gold-lt); font-weight: 600; }
+  .voice-waveform { display: flex; align-items: center; gap: 4px; height: 40px; margin-bottom: 18px; }
+  .waveform-bar { width: 4px; background: linear-gradient(to top, var(--imperial-gold-lt), #ffd700); border-radius: 4px; animation: wave 1s ease-in-out infinite; }
+  .waveform-bar:nth-child(2) { animation-delay: 0.1s; }
+  .waveform-bar:nth-child(3) { animation-delay: 0.2s; }
+  .waveform-bar:nth-child(4) { animation-delay: 0.3s; }
+  .waveform-bar:nth-child(5) { animation-delay: 0.15s; }
+  .waveform-bar:nth-child(6) { animation-delay: 0.25s; }
+  .waveform-bar:nth-child(7) { animation-delay: 0.05s; }
+  .waveform-bar:nth-child(8) { animation-delay: 0.35s; }
+  .hero-card-msg { font-size: 0.92rem; color: rgba(255,253,249,0.85); font-style: italic; line-height: 1.5; }
+  .hero-scam-alert {
+    background: #fff; border-radius: 24px; padding: 20px; color: #1a1a3e;
+    width: 100%; max-width: 400px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); border: 1.5px solid var(--theme-border);
+  }
+  .scam-hdr { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .scam-icon { width: 38px; height: 38px; border-radius: 50%; background: #FFF3CD; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+  .scam-title { font-weight: 700; font-size: 0.95rem; }
+  .scam-sub { font-size: 0.72rem; color: #5a5a8a; }
+  .scam-bar-bg { background: #f0f0f0; border-radius: 6px; height: 8px; overflow: hidden; margin-bottom: 8px; }
+  .scam-bar-fill { height: 100%; background: linear-gradient(90deg, #F4A300, #E11D48); animation: progress-bar 2s ease forwards; --target-width: 85%; }
+  .scam-labels { display: flex; justify-content: space-between; font-size: 0.7rem; font-weight: 700; color: #5a5a8a; }
+
+  /* ═══════════════════════════════════════════════
+     6. MODES GRID
+     ═══════════════════════════════════════════════ */
+  #page-modes-grid { padding: 100px 40px; background: var(--pearl-ivory); }
+  .section-hdr { text-align: center; max-width: 700px; margin: 0 auto 60px; }
+  .section-badge { color: var(--imperial-gold); font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; display: inline-block; }
+  .section-title { font-size: 2.8rem; color: var(--royal-indigo); margin-bottom: 16px; }
+  .section-desc { font-size: 1.05rem; color: #5a5a8a; line-height: 1.6; }
+  .modes-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+  .mode-card {
+    border-radius: 30px; overflow: hidden; cursor: pointer;
+    box-shadow: 0 10px 30px rgba(30,31,87,0.08); background: #fff;
+    border: 1.5px solid var(--theme-border);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex; flex-direction: column;
+  }
+  .mode-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(30,31,87,0.18); }
+  .mode-card:focus-visible { outline: 3px solid var(--imperial-gold); outline-offset: 3px; }
+  .mode-card-header { padding: 32px 24px 20px; position: relative; }
+  .mode-emoji { font-size: 2.8rem; margin-bottom: 16px; display: block; }
+  .mode-tag { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 14px; border-radius: 50px; margin-bottom: 12px; }
+  .mode-title { font-size: 1.35rem; font-weight: 800; color: var(--royal-indigo); margin-bottom: 8px; }
+  .mode-desc { font-size: 0.85rem; color: #5a5a8a; line-height: 1.5; }
+  .mode-card-body { padding: 0 24px 32px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+  .mode-features-list { list-style: none; margin-bottom: 24px; }
+  .mode-feature-item { font-size: 0.82rem; color: #5a5a8a; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; font-weight: 600; }
+  .mode-feature-item::before { content: '✦'; color: var(--imperial-gold); font-size: 0.75rem; }
+  .mode-card.amma .mode-card-header { background: linear-gradient(135deg, #FFF5E6 0%, #FFE5C4 100%); }
+  .mode-card.amma .mode-tag { background: rgba(244,163,0,0.15); color: #B8770A; }
+  .mode-card.amma .mode-btn { background: linear-gradient(135deg, #F4A300, #c49b2e); color: var(--royal-indigo-deep); }
+  .mode-card.business .mode-card-header { background: linear-gradient(135deg, #EEF5F2 0%, #D2ECE4 100%); }
+  .mode-card.business .mode-tag { background: rgba(11,90,62,0.12); color: #0B5A3E; }
+  .mode-card.business .mode-btn { background: linear-gradient(135deg, #0B5A3E, #0d7050); color: #fff; }
+  .mode-card.senior .mode-card-header { background: linear-gradient(135deg, #EAF5F6 0%, #C4E7EA 100%); }
+  .mode-card.senior .mode-tag { background: rgba(127,183,190,0.22); color: #2D7A82; }
+  .mode-card.senior .mode-btn { background: linear-gradient(135deg, #7FB7BE, #5a9fa8); color: var(--royal-indigo-deep); }
+  .mode-card.student .mode-card-header { background: linear-gradient(135deg, #F0EEFF 0%, #DBD2FF 100%); }
+  .mode-card.student .mode-tag { background: rgba(108,63,212,0.12); color: #6C3FD4; }
+  .mode-card.student .mode-btn { background: linear-gradient(135deg, #6C3FD4, #8A60EF); color: #fff; }
+
+  /* ═══════════════════════════════════════════════
+     7. ONBOARDING
+     ═══════════════════════════════════════════════ */
+  #page-onboarding {
+    min-height: 100vh; padding: 120px 20px 60px;
+    background: linear-gradient(135deg, var(--warm-ivory) 0%, var(--pearl-ivory) 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .onboarding-box {
+    max-width: 600px; width: 100%; background: #fff; border-radius: 32px;
+    border: 2px solid rgba(212,175,55,0.3); padding: 48px;
+    box-shadow: 0 30px 70px rgba(30,31,87,0.12);
+  }
+  .onboarding-progress { display: flex; gap: 8px; margin-bottom: 32px; }
+  .onboarding-step-dot { flex-grow: 1; height: 6px; background: #e5e7eb; border-radius: 4px; transition: all 0.5s ease; }
+  .onboarding-step-dot.active { background: var(--imperial-gold); }
+  .onboarding-question-title { font-size: 1.8rem; color: var(--royal-indigo); margin-bottom: 12px; }
+  .onboarding-question-subtitle { font-size: 0.95rem; color: #5a5a8a; margin-bottom: 28px; }
+  .onboarding-options { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 32px; }
+  .onboarding-option {
+    border: 2px solid rgba(30,31,87,0.12); padding: 16px 24px; border-radius: 16px;
+    cursor: pointer; font-weight: 600; transition: all 0.3s;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .onboarding-option:hover { border-color: var(--imperial-gold); background: rgba(212,175,55,0.05); }
+  .onboarding-option.selected { border-color: var(--imperial-gold); background: rgba(212,175,55,0.12); color: var(--royal-indigo); }
+
+  /* ═══════════════════════════════════════════════
+     8. AUTH MODAL & PAGE
+     ═══════════════════════════════════════════════ */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(10,11,46,0.85);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px;
+    opacity: 0; visibility: hidden; transition: all 0.3s ease;
+  }
+  .modal-overlay.active { opacity: 1; visibility: visible; }
+  .auth-modal {
+    background: #fff; border-radius: 30px; width: 100%; max-width: 480px;
+    overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+    border: 1.5px solid var(--theme-border);
+    transform: scale(0.95) translateY(20px);
+    transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .modal-overlay.active .auth-modal { transform: scale(1) translateY(0); }
+  .auth-header {
+    background: linear-gradient(135deg, #0A0B2E, #1E1F57);
+    padding: 36px 36px 28px; text-align: center; color: #fff; position: relative;
+  }
+  .auth-emblem { width: 56px; height: 56px; margin: 0 auto 12px; filter: drop-shadow(0 0 10px rgba(212,175,55,0.6)); }
+  .auth-header h2 { font-size: 1.5rem; margin-bottom: 6px; }
+  .auth-header p { font-size: 0.85rem; color: rgba(255,253,249,0.6); }
+  .close-modal {
+    position: absolute; top: 16px; right: 16px;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; border-radius: 50%; width: 32px; height: 32px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; transition: background 0.2s;
+  }
+  .close-modal:hover { background: rgba(255,255,255,0.2); }
+  .auth-body { padding: 32px 36px; }
+  .social-btn {
+    width: 100%; display: flex; align-items: center; justify-content: center; gap: 12px;
+    padding: 14px; border-radius: 14px; border: 1.5px solid #e5e7eb; background: #fff;
+    font-weight: 700; font-family: 'Poppins', sans-serif; cursor: pointer; transition: all 0.3s; margin-bottom: 12px;
+  }
+  .social-btn:hover { border-color: var(--imperial-gold); background: rgba(212,175,55,0.05); }
+  .social-btn.phone-btn { background: linear-gradient(135deg, var(--royal-indigo), #2B2D80); color: #fff; border: none; }
+  .divider { display: flex; align-items: center; gap: 12px; margin: 20px 0; color: #5a5a8a; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+  .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: rgba(30,31,87,0.15); }
+  .phone-input-row { display: flex; gap: 10px; margin-bottom: 16px; }
+  .flag-box { padding: 14px; border-radius: 14px; border: 2px solid var(--theme-border); font-weight: 700; background: #f9f9ff; white-space: nowrap; }
+  .otp-row { display: flex; gap: 8px; justify-content: center; margin: 20px 0; }
+  .otp-box {
+    width: 48px; height: 56px; border: 2px solid var(--theme-border); border-radius: 12px;
+    text-align: center; font-size: 1.5rem; font-weight: 800; outline: none; background: #fff;
+    transition: border-color 0.3s;
+  }
+  .otp-box:focus { border-color: var(--imperial-gold); }
+  .otp-box.filled { border-color: var(--imperial-gold); background: rgba(212,175,55,0.05); }
+
+  /* ── Auth Full Page ── */
+  #page-auth {
+    min-height: 100vh; padding-top: 72px;
+    background: linear-gradient(135deg, var(--royal-indigo-deep) 0%, var(--royal-indigo) 50%, #25287B 100%);
+    display: flex; align-items: stretch;
+  }
+  .auth-container { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
+  .auth-left {
+    padding: 80px 60px; display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start; position: relative; overflow: hidden;
+    color: #fff;
+  }
+  .auth-mandala { top: -100px; right: -100px; width: 400px; height: 400px; }
+  .namaste-gesture { font-size: 4rem; margin-bottom: 24px; }
+  .auth-right {
+    background: var(--pearl-ivory); padding: 80px 60px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .auth-form-tabs { display: flex; gap: 4px; background: #f3f4f6; border-radius: 14px; padding: 4px; margin-bottom: 28px; }
+  .auth-tab-btn {
+    flex: 1; padding: 10px; border: none; border-radius: 10px; background: transparent;
+    font-weight: 700; font-family: 'Poppins', sans-serif; cursor: pointer; transition: all 0.3s; color: #5a5a8a;
+  }
+  .auth-tab-btn.active { background: #fff; color: var(--royal-indigo); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+  /* ═══════════════════════════════════════════════
+     9. VOICE COMPANION
+     ═══════════════════════════════════════════════ */
+  #voice-companion { position: fixed; bottom: 30px; right: 30px; z-index: 950; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+  .voice-bubble {
+    background: var(--royal-indigo); color: #fff; padding: 10px 20px; border-radius: 50px;
+    font-size: 0.82rem; font-weight: 600; box-shadow: 0 10px 30px rgba(30,31,87,0.3);
+    border: 1px solid var(--imperial-gold); max-width: 250px; animation: fadeIn 0.4s ease;
+  }
+  .voice-trigger {
+    width: 70px; height: 70px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--royal-indigo), var(--royal-indigo-deep));
+    border: 3.5px solid var(--imperial-gold); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 10px 30px rgba(30,31,87,0.4); animation: breathe 3.5s ease-in-out infinite; position: relative;
+  }
+  .voice-trigger::before {
+    content: ''; position: absolute; inset: -6px; border-radius: 50%;
+    border: 2px solid var(--imperial-gold-glow); animation: pulse-ring 2.5s ease-out infinite;
+  }
+  .voice-trigger svg { width: 30px; height: 30px; fill: var(--imperial-gold); }
+  .voice-trigger.listening { background: linear-gradient(135deg, #F4A300, #C96A3D); }
+  .voice-trigger:focus-visible { outline: 3px solid var(--imperial-gold); outline-offset: 4px; }
+
+  /* ═══════════════════════════════════════════════
+     10. DASHBOARD
+     ═══════════════════════════════════════════════ */
+  #page-dashboard { min-height: 100vh; padding-top: 72px; background: var(--theme-bg); display: flex; }
+  .dash-sidebar {
+    width: var(--sidebar-width); min-height: calc(100vh - 72px);
+    background: #fff; border-right: 1.5px solid var(--theme-border);
+    padding: 30px 20px; display: flex; flex-direction: column;
+    justify-content: space-between; flex-shrink: 0; position: sticky; top: 72px; height: calc(100vh - 72px); overflow-y: auto;
+  }
+  .sidebar-profile { text-align: center; margin-bottom: 30px; }
+  .sidebar-avatar {
+    width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--theme-secondary);
+    margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;
+    font-size: 2.2rem; background: var(--pearl-ivory);
+  }
+  .sidebar-name { font-size: 1.15rem; font-weight: 700; color: var(--royal-indigo); }
+  .sidebar-role { font-size: 0.75rem; color: #5a5a8a; font-weight: 700; text-transform: uppercase; margin-top: 4px; }
+  .sidebar-menu { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .sidebar-menu-btn {
+    width: 100%; display: flex; align-items: center; gap: 14px; padding: 14px 20px;
+    border-radius: 16px; border: none; background: transparent; font-family: 'Poppins', sans-serif;
+    font-weight: 700; color: #5a5a8a; cursor: pointer; text-align: left; transition: all 0.3s;
+  }
+  .sidebar-menu-btn:hover, .sidebar-menu-btn.active { background: rgba(212,175,55,0.12); color: var(--theme-primary); }
+  .sidebar-menu-btn:focus-visible { outline: 2px solid var(--imperial-gold); outline-offset: 2px; border-radius: 16px; }
+  .dash-main { flex-grow: 1; padding: 40px; overflow-y: auto; }
+  .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; flex-wrap: wrap; gap: 16px; }
+  .dash-welcome h2 { font-size: 2.2rem; color: var(--theme-primary); }
+  .dash-welcome p { font-size: 0.95rem; color: #5a5a8a; font-weight: 600; margin-top: 4px; }
+
+  /* ── Senior mode large-text override ── */
+  body.senior-mode .sidebar-menu-btn { font-size: 1.05rem; padding: 16px 20px; }
+  body.senior-mode .dash-main { font-size: 1.1rem; }
+  body.senior-mode .btn { font-size: 1rem; padding: 14px 32px; }
+  body.senior-mode .input { font-size: 1.05rem; padding: 16px 20px; }
+
+  /* ═══════════════════════════════════════════════
+     11. DEVELOPER CONSOLE
+     ═══════════════════════════════════════════════ */
+  #dev-console-toggle {
+    position: fixed; bottom: 30px; left: 30px; z-index: 990;
+    padding: 10px 20px; border-radius: 50px;
+    background: #111827; color: #10B981;
+    font-family: 'Courier New', monospace; font-weight: 700; font-size: 0.8rem;
+    border: 1px solid #10B981; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    cursor: pointer; display: flex; align-items: center; gap: 8px;
+  }
+  #dev-console {
+    position: fixed; bottom: 0; left: 0; right: 0; height: 380px;
+    background: #0B0F19; border-top: 2px solid #10B981; z-index: 980;
+    display: flex; flex-direction: column; color: #E5E7EB;
+    font-family: 'Courier New', monospace; transition: transform 0.4s ease;
+    transform: translateY(100%); box-shadow: 0 -20px 50px rgba(0,0,0,0.4);
+  }
+  #dev-console.active { transform: translateY(0); }
+  .console-header {
+    display: flex; justify-content: space-between; align-items: center;
+    background: #111827; padding: 10px 24px; border-bottom: 1px solid #1F2937; flex-wrap: wrap; gap: 8px;
+  }
+  .console-title { font-weight: 700; color: #10B981; display: flex; align-items: center; gap: 8px; }
+  .console-tabs { display: flex; gap: 12px; }
+  .console-tab { background: transparent; border: none; color: #9CA3AF; padding: 6px 14px; cursor: pointer; font-family: inherit; font-size: 0.8rem; font-weight: 700; border-bottom: 2px solid transparent; }
+  .console-tab.active { color: #10B981; border-bottom-color: #10B981; }
+  .console-body { flex-grow: 1; padding: 20px; overflow-y: auto; font-size: 0.8rem; line-height: 1.5; }
+  .sql-log { color: #F59E0B; margin-bottom: 10px; border-left: 3px solid #F59E0B; padding-left: 10px; }
+  .api-log { color: #3B82F6; margin-bottom: 10px; border-left: 3px solid #3B82F6; padding-left: 10px; }
+  .db-table-view { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
+  .db-table-view th { text-align: left; border-bottom: 1px solid #374151; padding: 8px; color: #10B981; }
+  .db-table-view td { padding: 8px; border-bottom: 1px solid #1F2937; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* ═══════════════════════════════════════════════
+     12. TOAST NOTIFICATIONS
+     ═══════════════════════════════════════════════ */
+  #toast-container {
+    position: fixed; top: 90px; right: 24px; z-index: 9998;
+    display: flex; flex-direction: column; gap: 10px; pointer-events: none;
+  }
+  .toast {
+    background: var(--royal-indigo); color: #fff;
+    padding: 14px 20px; border-radius: 16px; border-left: 4px solid var(--imperial-gold);
+    box-shadow: 0 10px 30px rgba(30,31,87,0.25);
+    display: flex; align-items: center; gap: 12px; max-width: 340px;
+    animation: slideInUp 0.4s ease forwards; pointer-events: all;
+    font-size: 0.88rem; font-weight: 600;
+  }
+  .toast.removing { animation: fadeIn 0.3s ease reverse forwards; }
+  .toast-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+  /* ═══════════════════════════════════════════════
+     13. STATUS BADGES & MISC UI
+     ═══════════════════════════════════════════════ */
+  .status-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700;
+  }
+  .status-success { background: #d1fae5; color: #065f46; }
+  .status-pending { background: #fef3c7; color: #92400e; }
+  .status-danger { background: #fee2e2; color: #991b1b; }
+  .locked-badge { display: inline-block; padding: 3px 10px; border-radius: 50px; background: rgba(212,175,55,0.15); color: var(--imperial-gold); font-size: 0.8rem; margin-left: 8px; }
+  .select-persona-card { text-align: center; padding: 28px 20px; cursor: pointer; }
+  .select-persona-card:hover { transform: translateY(-6px); }
+
+  /* Loading spinner */
+  .spinner {
+    width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff; border-radius: 50%;
+    animation: rotate-slow 0.6s linear infinite; display: inline-block;
+  }
+
+  /* ═══════════════════════════════════════════════
+     14. RESPONSIVE - TABLET & MOBILE
+     ═══════════════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .modes-grid { grid-template-columns: repeat(2, 1fr); }
+    .landing-content { grid-template-columns: 1fr; }
+    .landing-cards { display: none; }
+    .auth-container { grid-template-columns: 1fr; }
+    .auth-left { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    #navbar { padding: 0 20px; }
+    .nav-menu, .nav-actions { display: none; }
+    .nav-hamburger { display: block; }
+    .nav-menu.mobile-open {
+      display: flex; flex-direction: column; position: fixed;
+      top: 72px; left: 0; right: 0;
+      background: var(--pearl-ivory); padding: 20px;
+      border-bottom: 2px solid var(--theme-border); z-index: 899; gap: 16px;
+    }
+    .nav-actions.mobile-open { display: flex; flex-direction: column; padding: 0 20px 20px; position: fixed; top: 72px; left: 0; right: 0; background: var(--pearl-ivory); z-index: 899; margin-top: 120px; }
+    .modes-grid { grid-template-columns: 1fr; gap: 20px; }
+    #page-modes-grid { padding: 60px 20px; }
+    .section-title { font-size: 2rem; }
+    .landing-title { font-size: 2.6rem; }
+    .landing-content { padding: 40px 20px; }
+    #page-dashboard { flex-direction: column; }
+    .dash-sidebar {
+      width: 100%; height: auto; position: static;
+      border-right: none; border-bottom: 1.5px solid var(--theme-border); padding: 20px;
+    }
+    .sidebar-menu { flex-direction: row; overflow-x: auto; padding-bottom: 8px; flex-wrap: nowrap; }
+    .sidebar-menu-btn { white-space: nowrap; flex-shrink: 0; font-size: 0.82rem; padding: 10px 14px; }
+    .sidebar-profile { display: flex; align-items: center; gap: 12px; text-align: left; margin-bottom: 16px; }
+    .sidebar-avatar { margin: 0; width: 50px; height: 50px; font-size: 1.4rem; }
+    .dash-main { padding: 20px; }
+    .dash-header { flex-direction: column; align-items: flex-start; margin-bottom: 24px; }
+    .onboarding-box { padding: 28px 20px; }
+    #voice-companion { bottom: 16px; right: 16px; }
+    #dev-console-toggle { bottom: 16px; left: 16px; padding: 8px 14px; font-size: 0.72rem; }
+    .auth-right { padding: 40px 24px; }
+    .grid[style*="1fr 1fr"] { grid-template-columns: 1fr !important; }
+  }
+
+  @media (max-width: 480px) {
+    .landing-title { font-size: 2rem; }
+    .section-title { font-size: 1.7rem; }
+    .otp-box { width: 40px; height: 48px; font-size: 1.2rem; }
+    #toast-container { right: 12px; left: 12px; }
+    .toast { max-width: 100%; }
+  }
+
+  /* ── PRINT STYLES ── */
+  @media print {
+    #navbar, #voice-companion, #dev-console-toggle, #dev-console, #toast-container { display: none !important; }
+    #page-landing, #page-modes-grid, #page-auth, #page-onboarding, #page-modes-panel { display: none !important; }
+    #page-dashboard { padding-top: 0 !important; }
+    .dash-sidebar { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── SKIP LINK FOR ACCESSIBILITY ── -->
+<a href="#dash-main-content" class="sr-only" style="position:absolute;top:-100px">Skip to main content</a>
+
+<!-- ── TOAST CONTAINER ── -->
+<div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     SPLASH SCREEN
+     ═══════════════════════════════════════════════════ -->
+<div id="splash-screen" role="status" aria-label="Saarthi loading">
+  <div class="splash-mandala anim-rotate"></div>
+  <div class="splash-mandala anim-rotate-rev" style="width:450px;height:450px;"></div>
+  <div class="splash-logo-container">
+    <svg class="splash-emblem" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="60" cy="60" r="56" stroke="#D4AF37" stroke-width="2" stroke-dasharray="6 4" opacity="0.6"/>
+      <path d="M42 74 C38 68, 34 60, 36 51 C37 46, 40 43, 44 45 C45 46, 46 48, 46 50 L47 55 L51 47 C53 45, 56 46, 56 49 L57 60 L61 52 C63 51, 65 53, 65 56 L65 67 L69 60 C71 60, 72 62, 72 65 L71 76 C69 82, 64 86, 59 87 C54 88, 48 84, 44 78 Z" fill="#D4AF37"/>
+      <path d="M78 74 C82 68, 86 60, 84 51 C83 46, 80 43, 76 45 C75 46, 74 48, 74 50 L73 55 L69 47 C67 45, 64 46, 64 49 L63 60 L59 52 C57 51, 55 53, 55 56 L55 67 L51 60 C49 60, 48 62, 48 65 L49 76 C51 82, 56 86, 61 87 C66 88, 72 84, 76 78 Z" fill="#D4AF37"/>
+      <circle cx="60" cy="34" r="4.5" fill="#E8C84A"/>
+      <path d="M60 30 L60 22" stroke="#E8C84A" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <h1 class="splash-title font-royal gradient-gold">SAARTHI</h1>
+    <div class="splash-tagline">Guiding India into the Digital Future</div>
+    <div class="splash-dots" aria-hidden="true">
+      <div class="splash-dot"></div>
+      <div class="splash-dot"></div>
+      <div class="splash-dot"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     NAVIGATION BAR
+     ═══════════════════════════════════════════════════ -->
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo" onclick="showLandingPage()" role="link" tabindex="0" aria-label="Saarthi Home" onkeydown="if(event.key==='Enter')showLandingPage()">
+    <svg class="nav-logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="20" cy="20" r="18" fill="#1E1F57" stroke="#D4AF37" stroke-width="1.5"/>
+      <path d="M14 26 C12 23, 10 19, 11 15 C12 13, 14 12, 16 13 L17.5 19 L20 15 C21 14, 22 15, 22 17 L22.5 22 L24 18 C25 17, 26 18, 26 20 L25.5 26 C24.5 29, 22 31, 20 31 C18 31, 15.5 29, 14 26 Z" fill="#D4AF37"/>
+      <path d="M26 26 C28 23, 30 19, 29 15 C28 13, 26 12, 24 13 L22.5 19 L20 15 C19 14, 18 15, 18 17 L17.5 22 L16 18 C15 17, 14 18, 14 20 L14.5 26 C15.5 29, 18 31, 20 31 C22 31, 24.5 29, 26 26 Z" fill="#D4AF37"/>
+    </svg>
+    <div>
+      <div class="nav-title font-royal">Sa<span>arthi</span></div>
+      <span class="nav-tagline">🇮🇳 Digital Companion</span>
+    </div>
+  </div>
+
+  <ul class="nav-menu" id="nav-links">
+    <li><a href="#" onclick="showLandingPage(); return false;" class="active" aria-current="page">Home</a></li>
+    <li><a href="#page-modes-grid" onclick="scrollToSection('page-modes-grid'); return false;">Explore Modes</a></li>
+    <li><a href="#" onclick="showToast('💡', 'Select a mode below to access all features!'); return false;">Features</a></li>
+  </ul>
+
+  <div class="nav-actions" id="nav-actions">
+    <select class="nav-lang-picker" id="language-selector" onchange="changeLanguage(this.value)" aria-label="Select language">
+      <option value="English">English</option>
+      <option value="Hindi">हिंदी (Hindi)</option>
+      <option value="Tamil">தமிழ் (Tamil)</option>
+      <option value="Telugu">తెలుగు (Telugu)</option>
+      <option value="Marathi">मराठी (Marathi)</option>
+      <option value="Bengali">বাংলা (Bengali)</option>
+    </select>
+    <div id="nav-auth-section">
+      <button class="btn btn-royal" onclick="showAuthPage('login')" aria-label="Sign in to Saarthi">Sign In 🙏</button>
+    </div>
+  </div>
+
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMobileMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════
+     HERO LANDING PAGE
+     ═══════════════════════════════════════════════════ -->
+<section id="page-landing" aria-label="Saarthi hero section">
+  <div class="mandala-watermark landing-mandala-1 anim-rotate" aria-hidden="true"></div>
+  <div class="mandala-watermark landing-mandala-2 anim-rotate-rev" aria-hidden="true"></div>
+  <div class="landing-content">
+    <div class="landing-left anim-slide-up">
+      <div class="landing-badge" role="note">Guiding India into the Digital Future</div>
+      <h1 class="landing-title font-royal">
+        Technology Made<br>
+        Simple For <span>Every Indian</span>
+      </h1>
+      <p class="landing-desc font-body">
+        Saarthi is an emotionally intelligent, voice-first digital companion that understands your language, speaks warmly like family, and helps you learn technology, protect yourself from fraud, and manage daily life with absolute confidence.
+      </p>
+      <div class="landing-ctas">
+        <button class="btn btn-royal" onclick="scrollToSection('page-modes-grid')" aria-label="Explore Saarthi modes">Begin Journey ✦</button>
+        <button class="btn btn-outline" style="color:#fff; border-color:#fff;" onclick="openDevConsole()" aria-label="Open database console">DB Console 💻</button>
+      </div>
+      <div class="trust-row">
+        <div class="trust-avatars" aria-hidden="true">
+          <div class="trust-avatar">अ</div>
+          <div class="trust-avatar" style="background:#E8C84A;">म</div>
+          <div class="trust-avatar" style="background:#7FB7BE;">स</div>
+          <div class="trust-avatar" style="background:#6C3FD4; color:#fff;">+</div>
+        </div>
+        <p class="trust-text font-body">
+          Loved by <strong>10 Lakh+ Indians</strong> across Bharat<br>
+          Mothers · Seniors · Shop Owners · Students
+        </p>
+      </div>
+    </div>
+    <div class="landing-cards anim-float" aria-hidden="true">
+      <div class="hero-voice-card">
+        <div class="hero-card-header">
+          <div class="hero-card-avatar">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 2a8 8 0 0 1 8 8c0 3-1.7 5.6-4.2 7L12 22l-3.8-5C5.7 15.6 4 13 4 10a8 8 0 0 1 8-8z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="hero-card-name font-royal">Lakshmi Amma</div>
+            <div class="hero-card-status">● Active Companion — Guidance</div>
+          </div>
+        </div>
+        <div class="voice-waveform" aria-hidden="true">
+          <div class="waveform-bar" style="height:12px;"></div>
+          <div class="waveform-bar" style="height:28px;"></div>
+          <div class="waveform-bar" style="height:38px;"></div>
+          <div class="waveform-bar" style="height:18px;"></div>
+          <div class="waveform-bar" style="height:32px;"></div>
+          <div class="waveform-bar" style="height:22px;"></div>
+          <div class="waveform-bar" style="height:14px;"></div>
+          <div class="waveform-bar" style="height:26px;"></div>
+        </div>
+        <p class="hero-card-msg font-body">"Namaste beta! Main Lakshmi Amma hoon. Aaj rasoi me kya pakana hai ya bank ka koi kaam seekhna hai?" 🌸</p>
+      </div>
+      <div class="hero-scam-alert">
+        <div class="scam-hdr">
+          <div class="scam-icon">🛡️</div>
+          <div>
+            <div class="scam-title font-royal">Scam Safety Active</div>
+            <div class="scam-sub font-body">Screen message analysis…</div>
+          </div>
+        </div>
+        <div class="scam-bar-bg">
+          <div class="scam-bar-fill"></div>
+        </div>
+        <div class="scam-labels font-body">
+          <span>Safe</span>
+          <span style="color:#E11D48;">85% High Risk</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     EXPLORE MODES GRID
+     ═══════════════════════════════════════════════════ -->
+<section id="page-modes-grid" aria-label="Choose your Saarthi mode">
+  <div class="section-hdr">
+    <span class="section-badge font-royal">Choose Your Saarthi</span>
+    <h2 class="section-title font-royal">4 Independent AI Ecosystems</h2>
+    <p class="section-desc font-body">
+      Saarthi changes completely based on who is using it. Each mode has a custom UI, different AI personality, unique voice tone, and dedicated tools.
+    </p>
+  </div>
+  <div class="modes-grid">
+    <div class="mode-card amma" onclick="selectModeOnCard('amma')" role="button" tabindex="0" aria-label="Activate Amma Mode for homemakers" onkeydown="if(event.key==='Enter')selectModeOnCard('amma')">
+      <div class="mode-card-header">
+        <span class="mode-emoji" aria-hidden="true">🌸</span>
+        <div class="mode-tag font-royal">For Homemakers</div>
+        <h3 class="mode-title font-royal">Amma Mode</h3>
+        <p class="mode-desc font-body">Designed for mothers and home managers. Warm, motherly vocabulary, saffron styling.</p>
+      </div>
+      <div class="mode-card-body">
+        <ul class="mode-features-list font-body" aria-label="Amma mode features">
+          <li class="mode-feature-item">🍳 Smart Ingredient Recipe AI</li>
+          <li class="mode-feature-item">🛒 Budget Grocery Planner</li>
+          <li class="mode-feature-item">🛡️ Scam Screenshot Detector</li>
+          <li class="mode-feature-item">⏰ Medicine & Birthday Reminders</li>
+          <li class="mode-feature-item">🎙️ Lakshmi Amma Voice Assistant</li>
+        </ul>
+        <button class="btn mode-btn font-royal w-full justify-center" onclick="selectModeOnCard('amma')">Activate Amma Mode →</button>
+      </div>
+    </div>
+
+    <div class="mode-card business" onclick="selectModeOnCard('business')" role="button" tabindex="0" aria-label="Activate Business Mode for shopkeepers" onkeydown="if(event.key==='Enter')selectModeOnCard('business')">
+      <div class="mode-card-header">
+        <span class="mode-emoji" aria-hidden="true">💼</span>
+        <div class="mode-tag font-royal">For Shop Owners</div>
+        <h3 class="mode-title font-royal">Business Mode</h3>
+        <p class="mode-desc font-body">Designed for Indian shopkeepers and entrepreneurs. Growth, strategy, emerald themes.</p>
+      </div>
+      <div class="mode-card-body">
+        <ul class="mode-features-list font-body" aria-label="Business mode features">
+          <li class="mode-feature-item">📱 WhatsApp Marketing Ad Writer</li>
+          <li class="mode-feature-item">📊 Profit & Customer Analytics</li>
+          <li class="mode-feature-item">🤖 Multilingual Auto-Replies</li>
+          <li class="mode-feature-item">🧾 GST Invoice Builder</li>
+          <li class="mode-feature-item">🎙️ Sharma Ji Professional Voice AI</li>
+        </ul>
+        <button class="btn mode-btn font-royal w-full justify-center" onclick="selectModeOnCard('business')">Activate Business Mode →</button>
+      </div>
+    </div>
+
+    <div class="mode-card senior" onclick="selectModeOnCard('senior')" role="button" tabindex="0" aria-label="Activate Senior Mode for elders" onkeydown="if(event.key==='Enter')selectModeOnCard('senior')">
+      <div class="mode-card-header">
+        <span class="mode-emoji" aria-hidden="true">🌿</span>
+        <div class="mode-tag font-royal">For Retired Elders</div>
+        <h3 class="mode-title font-royal">Senior Mode</h3>
+        <p class="mode-desc font-body">Calm, high-contrast, large text companion for seniors. Patient and gentle.</p>
+      </div>
+      <div class="mode-card-body">
+        <ul class="mode-features-list font-body" aria-label="Senior mode features">
+          <li class="mode-feature-item">🏦 Safe Online Banking Assistant</li>
+          <li class="mode-feature-item">🆘 One-Touch Family Emergency SOS</li>
+          <li class="mode-feature-item">📞 Video Call Interactive Tutor</li>
+          <li class="mode-feature-item">💊 Medicine Schedules & Reminders</li>
+          <li class="mode-feature-item">🎙️ Reassuring Dada Saathi Voice AI</li>
+        </ul>
+        <button class="btn mode-btn font-royal w-full justify-center" onclick="selectModeOnCard('senior')">Activate Senior Mode →</button>
+      </div>
+    </div>
+
+    <div class="mode-card student" onclick="selectModeOnCard('student')" role="button" tabindex="0" aria-label="Activate Student Mode for learners" onkeydown="if(event.key==='Enter')selectModeOnCard('student')">
+      <div class="mode-card-header">
+        <span class="mode-emoji" aria-hidden="true">🎓</span>
+        <div class="mode-tag font-royal">For Career & Study</div>
+        <h3 class="mode-title font-royal">Student Mode</h3>
+        <p class="mode-desc font-body">High energy, futuristic, motivational. Electric purple for tech-savvy learners.</p>
+      </div>
+      <div class="mode-card-body">
+        <ul class="mode-features-list font-body" aria-label="Student mode features">
+          <li class="mode-feature-item">📚 Topic Notes & Quiz Maker</li>
+          <li class="mode-feature-item">📄 AI ATS Resume Optimizer</li>
+          <li class="mode-feature-item">💻 Hackathon Stack Generator</li>
+          <li class="mode-feature-item">⚡ Pomodoro Tracker & Streaks</li>
+          <li class="mode-feature-item">🎙️ Astra Futuristic AI Mentor</li>
+        </ul>
+        <button class="btn mode-btn font-royal w-full justify-center" onclick="selectModeOnCard('student')">Activate Student Mode →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     AUTH MODAL (Quick)
+     ═══════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title" onclick="closeAuthModal()">
+  <div class="auth-modal" onclick="event.stopPropagation()">
+    <div class="auth-header">
+      <button class="close-modal" onclick="closeAuthModal()" aria-label="Close authentication dialog">✕</button>
+      <svg class="auth-emblem" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="28" cy="28" r="26" stroke="#D4AF37" stroke-width="1.5" opacity="0.6"/>
+        <path d="M22 36 C20 32, 17 26, 18 20 C18.5 17, 21 15, 23 17 L24 22 L26 18 C27 17, 28 18, 28 20 L27.5 26 C26.5 29, 24 31, 22 31 C20 31, 17.5 29, 16 26 Z" fill="#D4AF37"/>
+        <path d="M34 36 C36 32, 39 26, 38 20 C37.5 17, 35 15, 33 17 L32 22 L30 18 C29 17, 28 18, 28 20 L28.5 26 C29.5 29, 32 31, 34 31 C36 31, 38.5 29, 40 26 Z" fill="#D4AF37"/>
+      </svg>
+      <h2 class="font-royal" id="auth-modal-title" id="auth-title">Verify with Saarthi</h2>
+      <p id="auth-subtitle">Securing your identity with JWT Auth</p>
+    </div>
+    <div class="auth-body">
+      <div id="auth-step-options">
+        <button class="social-btn phone-btn" onclick="switchAuthStep('phone')">Continue with Phone Number 📱</button>
+        <button class="social-btn" onclick="loginWithGoogleMock()">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="" width="18">
+          Sign In with Google
+        </button>
+        <div class="divider">Or enter email</div>
+        <input type="email" class="input font-body" style="margin-bottom:12px;" id="auth-email-field" placeholder="name@email.com" autocomplete="email">
+        <button class="btn btn-royal w-full justify-center" onclick="loginWithEmailMock()">Sign In with Email</button>
+      </div>
+      <div id="auth-step-phone" class="hidden">
+        <div class="phone-input-row font-body">
+          <div class="flag-box" aria-label="India +91">🇮🇳 +91</div>
+          <input type="tel" class="input" id="auth-phone-field" placeholder="9876543210" maxlength="10" autocomplete="tel-national" inputmode="numeric">
+        </div>
+        <p style="font-size:0.75rem; color:#5a5a8a; margin-bottom:16px;">💡 Demo: Enter any 10 digits. Verification works automatically.</p>
+        <button class="btn btn-royal w-full justify-center" onclick="sendOtpCodeMock()">Send SMS Verification Code</button>
+      </div>
+      <div id="auth-step-otp" class="hidden">
+        <p class="font-body text-center" style="color:#5a5a8a;" id="otp-sent-text">Enter the 6-digit code sent to your phone</p>
+        <div class="otp-row" role="group" aria-label="Enter OTP code">
+          <input type="text" class="otp-box" id="otp-1" maxlength="1" oninput="focusNextOtp(1)" inputmode="numeric" aria-label="OTP digit 1">
+          <input type="text" class="otp-box" id="otp-2" maxlength="1" oninput="focusNextOtp(2)" inputmode="numeric" aria-label="OTP digit 2">
+          <input type="text" class="otp-box" id="otp-3" maxlength="1" oninput="focusNextOtp(3)" inputmode="numeric" aria-label="OTP digit 3">
+          <input type="text" class="otp-box" id="otp-4" maxlength="1" oninput="focusNextOtp(4)" inputmode="numeric" aria-label="OTP digit 4">
+          <input type="text" class="otp-box" id="otp-5" maxlength="1" oninput="focusNextOtp(5)" inputmode="numeric" aria-label="OTP digit 5">
+          <input type="text" class="otp-box" id="otp-6" maxlength="1" oninput="focusNextOtp(6)" inputmode="numeric" aria-label="OTP digit 6">
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:18px; align-items:center;">
+          <button class="btn" style="background:#f3f4f6; color:#1a1a3e; padding:8px 16px;" onclick="autoFillMockOtp()">⚡ Auto-fill: 123456</button>
+          <span style="font-weight:700; color:#5a5a8a;" id="otp-timer" aria-live="polite">Resend in 30s</span>
+        </div>
+        <button class="btn btn-royal w-full justify-center" onclick="verifyOtpCodeMock()">Verify OTP & Sign In</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     AUTH FULL PAGE
+     ═══════════════════════════════════════════════════ -->
+<section id="page-auth" class="hidden" aria-label="Sign in or register">
+  <div class="auth-container">
+    <div class="auth-left anim-fade">
+      <div class="mandala-watermark auth-mandala anim-rotate" aria-hidden="true"></div>
+      <div class="namaste-gesture" aria-hidden="true">🙏</div>
+      <h1 class="font-royal gradient-gold" style="font-size:2.8rem; margin-bottom:12px;">Shubh Swagatam</h1>
+      <p style="font-size:1.05rem; color:rgba(255,253,249,0.85); line-height:1.6; max-width:400px; margin-bottom:20px;">
+        Welcome to Saarthi — Bharat's emotionally intelligent, voice-first digital companion. Let's make technology simple and secure for you.
+      </p>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; align-items:center; gap:12px; color:rgba(255,253,249,0.75); font-size:0.9rem;"><span>🔐</span>Secure JWT Authentication</div>
+        <div style="display:flex; align-items:center; gap:12px; color:rgba(255,253,249,0.75); font-size:0.9rem;"><span>🌐</span>Hindi, Tamil, Telugu & More</div>
+        <div style="display:flex; align-items:center; gap:12px; color:rgba(255,253,249,0.75); font-size:0.9rem;"><span>🎙️</span>Voice-First AI Companion</div>
+      </div>
+    </div>
+    <div class="auth-right">
+      <h2 class="font-royal" style="font-size:1.8rem; color:var(--royal-indigo); margin-bottom:8px;">Welcome Back</h2>
+      <p style="color:#5a5a8a; margin-bottom:24px;">Sign in to continue your Saarthi journey.</p>
+      <div class="auth-form-tabs" role="tablist">
+        <button class="auth-tab-btn active" id="auth-tab-login" role="tab" aria-selected="true" onclick="switchAuthPageTab('login')">Sign In</button>
+        <button class="auth-tab-btn" id="auth-tab-register" role="tab" aria-selected="false" onclick="switchAuthPageTab('register')">Register</button>
+      </div>
+
+      <div id="auth-form-login" role="tabpanel" aria-labelledby="auth-tab-login">
+        <div style="margin-bottom:16px;">
+          <label style="display:block; font-weight:700; margin-bottom:8px; color:var(--royal-indigo);" for="login-email">Email or Phone</label>
+          <input type="text" class="input font-body" id="login-email" placeholder="meenadevi@bharat.in or 9876543210" autocomplete="username" inputmode="email">
+        </div>
+        <div style="margin-bottom:24px;">
+          <label style="display:block; font-weight:700; margin-bottom:8px; color:var(--royal-indigo);" for="login-password">Password</label>
+          <input type="password" class="input font-body" id="login-password" placeholder="Any password works in demo" autocomplete="current-password">
+        </div>
+        <button class="btn btn-royal w-full justify-center" onclick="submitPageLogin()">Sign In Securely 🔐</button>
+        <p style="text-align:center; margin-top:16px; color:#5a5a8a; font-size:0.85rem;">Demo: any credentials work. <a href="#" onclick="autoFillDemo(); return false;" style="color:var(--royal-indigo); font-weight:700;">Auto-fill demo</a></p>
+      </div>
+
+      <div id="auth-form-register" class="hidden" role="tabpanel" aria-labelledby="auth-tab-register">
+        <div style="margin-bottom:16px;">
+          <label style="display:block; font-weight:700; margin-bottom:8px; color:var(--royal-indigo);" for="reg-name">Full Name</label>
+          <input type="text" class="input font-body" id="reg-name" placeholder="Meena Devi" autocomplete="name">
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="display:block; font-weight:700; margin-bottom:8px; color:var(--royal-indigo);" for="reg-email">Email</label>
+          <input type="email" class="input font-body" id="reg-email" placeholder="you@bharat.in" autocomplete="email">
+        </div>
+        <div style="margin-bottom:24px;">
+          <label style="display:block; font-weight:700; margin-bottom:8px; color:var(--royal-indigo);" for="reg-phone">Phone Number</label>
+          <div class="phone-input-row" style="margin-bottom:0;">
+            <div class="flag-box">🇮🇳 +91</div>
+            <input type="tel" class="input" id="reg-phone" placeholder="9876543210" maxlength="10" autocomplete="tel-national" inputmode="numeric">
+          </div>
+        </div>
+        <button class="btn btn-royal w-full justify-center" onclick="submitPageRegister()">Create My Saarthi Account ✦</button>
+      </div>
+
+      <div id="auth-form-otp" class="hidden" role="tabpanel">
+        <p style="color:#5a5a8a; margin-bottom:16px; text-align:center;" id="page-otp-sent-text">Enter the 6-digit OTP sent to your phone</p>
+        <div class="otp-row" role="group" aria-label="Enter OTP code">
+          <input type="text" class="otp-box" id="page-otp-1" maxlength="1" oninput="focusNextPageOtp(1)" inputmode="numeric">
+          <input type="text" class="otp-box" id="page-otp-2" maxlength="1" oninput="focusNextPageOtp(2)" inputmode="numeric">
+          <input type="text" class="otp-box" id="page-otp-3" maxlength="1" oninput="focusNextPageOtp(3)" inputmode="numeric">
+          <input type="text" class="otp-box" id="page-otp-4" maxlength="1" oninput="focusNextPageOtp(4)" inputmode="numeric">
+          <input type="text" class="otp-box" id="page-otp-5" maxlength="1" oninput="focusNextPageOtp(5)" inputmode="numeric">
+          <input type="text" class="otp-box" id="page-otp-6" maxlength="1" oninput="focusNextPageOtp(6)" inputmode="numeric">
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:18px; align-items:center;">
+          <button class="btn" style="background:#f3f4f6; color:#1a1a3e; padding:8px 16px;" onclick="autoFillPageOtp()">⚡ Auto-fill: 123456</button>
+          <button style="background:none; border:none; color:var(--royal-indigo); font-weight:700; cursor:pointer; font-family:inherit;" id="page-resend-btn" onclick="resendOtp()" disabled>Resend (<span id="page-otp-timer">30</span>s)</button>
+        </div>
+        <button class="btn btn-royal w-full justify-center" onclick="verifyPageOtp()">Verify & Continue ✦</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     ONBOARDING QUESTIONNAIRE
+     ═══════════════════════════════════════════════════ -->
+<section id="page-onboarding" class="hidden" aria-label="Personalization questionnaire">
+  <div class="onboarding-box">
+    <div class="onboarding-progress" role="progressbar" id="onboarding-progress-bar" aria-label="Onboarding progress">
+      <div class="onboarding-step-dot active" id="ob-dot-0"></div>
+      <div class="onboarding-step-dot" id="ob-dot-1"></div>
+      <div class="onboarding-step-dot" id="ob-dot-2"></div>
+      <div class="onboarding-step-dot" id="ob-dot-3"></div>
+      <div class="onboarding-step-dot" id="ob-dot-4"></div>
+    </div>
+    <h2 class="onboarding-question-title font-royal" id="ob-question-title">What language do you prefer?</h2>
+    <p class="onboarding-question-subtitle font-body" id="ob-question-subtitle">Saarthi will speak and respond in your chosen language.</p>
+    <div class="onboarding-options" id="ob-options-container"></div>
+    <div style="display:flex; justify-content:space-between; margin-top:24px;">
+      <button class="btn btn-outline" id="onboarding-back-btn" onclick="previousOnboardingStep()">Back</button>
+      <button class="btn btn-royal" id="onboarding-next-btn" onclick="nextOnboardingStep()">Continue ✦</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     PERSONA SELECTION PANEL
+     ═══════════════════════════════════════════════════ -->
+<section id="page-modes-panel" class="hidden" style="padding:100px 40px; background:var(--pearl-ivory);" aria-label="Choose your companion">
+  <div class="section-hdr">
+    <span class="section-badge font-royal">Welcome Back!</span>
+    <h2 class="section-title font-royal" id="user-profile-greeting">Namaste, Saarthi User</h2>
+    <p class="section-desc font-body">Select your active digital companion below. Switch any time from your profile.</p>
+  </div>
+  <div class="modes-grid" id="modes-panel-grid"></div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     ACTIVE DASHBOARD
+     ═══════════════════════════════════════════════════ -->
+<section id="page-dashboard" class="hidden" aria-label="Saarthi dashboard">
+  <aside class="dash-sidebar" id="dashboard-sidebar" aria-label="Dashboard navigation">
+    <div>
+      <div class="sidebar-profile">
+        <div class="sidebar-avatar" id="dash-companion-avatar" aria-hidden="true">🌸</div>
+        <div class="sidebar-name font-royal" id="dash-companion-name">Lakshmi Amma</div>
+        <div class="sidebar-role font-body" id="dash-companion-role">Warm House Guide</div>
+      </div>
+      <nav aria-label="Feature tabs">
+        <div class="sidebar-menu" id="dash-menu-tabs" role="tablist"></div>
+      </nav>
+    </div>
+    <div>
+      <button class="sidebar-menu-btn" style="color:#ef4444;" onclick="logoutMock()" aria-label="Log out of Saarthi">
+        <span aria-hidden="true">🚪</span> Log Out
+      </button>
+    </div>
+  </aside>
+
+  <main class="dash-main" id="dash-main-content">
+    <header class="dash-header">
+      <div class="dash-welcome">
+        <h2 class="font-royal" id="dash-view-title">Welcome to Lakshmi Amma Mode</h2>
+        <p class="font-body" id="dash-view-subtitle">Guiding your kitchen, reminders, &amp; security with family care.</p>
+      </div>
+      <div class="flex" style="gap:12px; flex-wrap:wrap;">
+        <button class="btn btn-outline" id="dash-switch-mode-btn" onclick="showDashboardModesPanel()">Switch Mode 🔄</button>
+        <button class="btn btn-royal" onclick="triggerCompanionVoiceReadout()">Ask Companion 🎙️</button>
+      </div>
+    </header>
+    <div id="dash-feature-container" class="anim-slide-up" role="tabpanel"></div>
+  </main>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     VOICE COMPANION BUTTON
+     ═══════════════════════════════════════════════════ -->
+<div id="voice-companion" aria-label="Voice companion">
+  <div class="voice-bubble font-body hidden" id="voice-companion-bubble" role="status" aria-live="polite">
+    Namaste beta! I am listening to your voice…
+  </div>
+  <button class="voice-trigger" onclick="toggleVoiceSpeechCompanion()" id="voice-companion-btn" aria-label="Speak to Saarthi AI" aria-pressed="false">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+      <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+      <line x1="12" y1="16" x2="12" y2="20" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+      <line x1="8" y1="20" x2="16" y2="20" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     DEVELOPER CONSOLE
+     ═══════════════════════════════════════════════════ -->
+<button id="dev-console-toggle" onclick="toggleDevConsole()" aria-expanded="false" aria-controls="dev-console">
+  <span aria-hidden="true">💻</span> DB Inspector
+</button>
+
+<div id="dev-console" role="region" aria-label="Developer console" aria-hidden="true">
+  <div class="console-header">
+    <div class="console-title">🖥️ SaarthiDB In-Memory Engine</div>
+    <div class="console-tabs" role="tablist">
+      <button class="console-tab active" id="tab-console-sql" role="tab" aria-selected="true" onclick="switchConsoleTab('sql')">SQL Logs</button>
+      <button class="console-tab" id="tab-console-api" role="tab" aria-selected="false" onclick="switchConsoleTab('api')">API Logs</button>
+      <button class="console-tab" id="tab-console-db" role="tab" aria-selected="false" onclick="switchConsoleTab('db')">DB Tables</button>
+    </div>
+    <button class="close-modal" style="position:static; margin-left:12px;" onclick="closeDevConsole()" aria-label="Close developer console">✕</button>
+  </div>
+  <div class="console-body" id="console-sql-panel" role="tabpanel">
+    <div class="sql-log">-- SaarthiDB In-Memory Engine instantiated.</div>
+    <div class="sql-log">CREATE DATABASE SaarthiDB;</div>
+  </div>
+  <div class="console-body hidden" id="console-api-panel" role="tabpanel">
+    <div class="api-log">// API Gateway ready. Awaiting requests...</div>
+  </div>
+  <div class="console-body hidden" id="console-db-panel" role="tabpanel">
+    <div style="margin-bottom:12px;">
+      <select id="console-db-select" style="background:#1F2937; color:#E5E7EB; border:1px solid #374151; padding:6px 12px; border-radius:8px; font-family:inherit;" onchange="renderDBConsoleTable(this.value)" aria-label="Select database table">
+        <option value="users">users</option>
+        <option value="user_sessions">user_sessions</option>
+        <option value="recipes">recipes</option>
+        <option value="invoices">invoices</option>
+        <option value="emergency_alerts">emergency_alerts</option>
+        <option value="grocery_items">grocery_items</option>
+        <option value="productivity_tasks">productivity_tasks</option>
+        <option value="onboarding_answers">onboarding_answers</option>
+      </select>
+    </div>
+    <table class="db-table-view" id="console-db-table"><tr><td style="color:#9CA3AF;">Select a table above.</td></tr></table>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   SAARTHI IMPROVED — JAVASCRIPT ENGINE
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── A. IN-MEMORY DATABASE ── */
+const SaarthiDB = {
+  users: [
+    { id: 'usr_meenadevi', full_name: 'Meena Devi', email: 'meenadevi@bharat.in', phone: '+91 94440 12345', preferred_language: 'Hindi', ai_confidence_score: 85, created_at: new Date().toISOString() },
+    { id: 'usr_admin', full_name: 'Saarthi Admin', email: 'admin@saarthi.gov.in', phone: '+91 90945 55225', preferred_language: 'Hindi', ai_confidence_score: 100, created_at: new Date().toISOString() }
+  ],
+  user_sessions: [],
+  recipes: [],
+  invoices: [],
+  emergency_alerts: [],
+  grocery_items: [],
+  productivity_tasks: [],
+  onboarding_answers: [],
+
+  save() {
+    try { localStorage.setItem('saarthi_db', JSON.stringify(this._getSerializable())); } catch(e) {}
+  },
+  _getSerializable() {
+    const keys = ['users','user_sessions','recipes','invoices','emergency_alerts','grocery_items','productivity_tasks','onboarding_answers'];
+    const obj = {};
+    keys.forEach(k => { obj[k] = this[k]; });
+    return obj;
+  },
+  load() {
+    try {
+      const saved = localStorage.getItem('saarthi_db');
+      if (saved) {
+        const data = JSON.parse(saved);
+        Object.assign(this, data);
+      }
+    } catch(e) {}
+  },
+  logSql(query) {
+    const panel = document.getElementById('console-sql-panel');
+    if (!panel) return;
+    const div = document.createElement('div');
+    div.className = 'sql-log';
+    div.textContent = `[${new Date().toLocaleTimeString()}] ${query}`;
+    panel.appendChild(div);
+    panel.scrollTop = panel.scrollHeight;
+  },
+  logApi(method, endpoint, payload, status, response) {
+    const panel = document.getElementById('console-api-panel');
+    if (!panel) return;
+    const div = document.createElement('div');
+    div.className = 'api-log';
+    div.innerHTML = `<strong>${method} ${endpoint}</strong> → <span style="color:#10B981">${status}</span><br>
+      <span style="color:#9CA3AF;">Request: ${JSON.stringify(payload)}</span><br>
+      <span style="color:#D1FAE5;">Response: ${JSON.stringify(response).slice(0,120)}...</span>`;
+    panel.appendChild(div);
+    panel.scrollTop = panel.scrollHeight;
+  }
+};
+SaarthiDB.load();
+
+/* ── B. APP STATE ── */
+let currentUserId = null;
+let activeMode = null;
+let activeTab = null;
+let userLockedMode = null;
+let pomodoroTimer = null;
+let pomodoroSeconds = 25 * 60;
+let speechActive = false;
+let otpResendTimer = null;
+
+/* ── C. PERSONA CONFIGURATIONS ── */
+const personas = {
+  amma: {
+    name: 'Lakshmi Amma', role: 'Warm House Guide', avatar: '🌸',
+    primaryColor: '#F4A300', accentColor: '#E8C84A', bgColor: '#FFF8EE', secondaryColor: '#FFF5E6',
+    welcomeTitle: 'Welcome to Lakshmi Amma Mode 🌸',
+    welcomeSubtitle: 'Your kitchen companion for recipes, groceries, scam safety & reminders.',
+    menu: [
+      { id: 'recipe', label: 'Recipe AI', icon: '🍳' },
+      { id: 'grocery', label: 'Grocery Planner', icon: '🛒' },
+      { id: 'scam', label: 'Scam Detector', icon: '🛡️' },
+      { id: 'reminders', label: 'Reminders', icon: '⏰' }
+    ]
+  },
+  business: {
+    name: 'Sharma Ji', role: 'Business Growth Expert', avatar: '💼',
+    primaryColor: '#0B5A3E', accentColor: '#27AE60', bgColor: '#F0FFF4', secondaryColor: '#EEF5F2',
+    welcomeTitle: 'Welcome to Sharma Ji Business Mode 💼',
+    welcomeSubtitle: 'Grow your dukaan with analytics, GST invoices & marketing.',
+    menu: [
+      { id: 'invoice', label: 'GST Invoice', icon: '🧾' },
+      { id: 'marketing', label: 'Ad Writer', icon: '📱' },
+      { id: 'analytics', label: 'Analytics', icon: '📊' }
+    ]
+  },
+  senior: {
+    name: 'Dada Saathi', role: 'Gentle Senior Guide', avatar: '🌿',
+    primaryColor: '#2D7A82', accentColor: '#7FB7BE', bgColor: '#EAF5F6', secondaryColor: '#C4E7EA',
+    welcomeTitle: 'Namaste! Dada Saathi is here 🌿',
+    welcomeSubtitle: 'Safe banking, emergency help & medicine reminders for you.',
+    menu: [
+      { id: 'sos', label: 'Emergency SOS', icon: '🆘' },
+      { id: 'banking', label: 'Safe Banking', icon: '🏦' },
+      { id: 'medicine', label: 'Medicine Log', icon: '💊' },
+      { id: 'video-call', label: 'Video Call Help', icon: '📞' }
+    ]
+  },
+  student: {
+    name: 'Astra AI', role: 'Futuristic Study Mentor', avatar: '🎓',
+    primaryColor: '#6C3FD4', accentColor: '#8A60EF', bgColor: '#F5F3FF', secondaryColor: '#F0EEFF',
+    welcomeTitle: 'Astra AI Activated! 🚀',
+    welcomeSubtitle: 'Crush your goals with notes, resume AI & pomodoro timer.',
+    menu: [
+      { id: 'notes', label: 'Study Notes', icon: '📚' },
+      { id: 'resume', label: 'Resume Builder', icon: '📄' },
+      { id: 'hackathon', label: 'Hackathon Ideas', icon: '💻' },
+      { id: 'pomodoro', label: 'Pomodoro Timer', icon: '⚡' }
+    ]
+  }
+};
+
+/* ── D. PAGE NAVIGATION ── */
+function hideAllPages() {
+  ['page-landing','page-modes-grid','page-auth','page-onboarding','page-modes-panel','page-dashboard'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.add('hidden');
+  });
+}
+
+function showLandingPage() {
+  hideAllPages();
+  document.getElementById('page-landing').classList.remove('hidden');
+  document.getElementById('page-modes-grid').classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  updateNavLinks('home');
+}
+
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
+function toggleMobileMenu() {
+  const menu = document.getElementById('nav-links');
+  const actions = document.getElementById('nav-actions');
+  const btn = document.getElementById('nav-hamburger');
+  const isOpen = menu.classList.contains('mobile-open');
+  menu.classList.toggle('mobile-open', !isOpen);
+  actions.classList.toggle('mobile-open', !isOpen);
+  btn.setAttribute('aria-expanded', String(!isOpen));
+}
+
+function updateNavLinks(active) {
+  document.querySelectorAll('.nav-menu a').forEach(a => a.classList.remove('active'));
+  if (active === 'home') {
+    const homeLink = document.querySelector('.nav-menu a');
+    if (homeLink) homeLink.classList.add('active');
+  }
+}
+
+/* ── E. AUTH FLOWS ── */
+function showAuthPage(tabName) {
+  hideAllPages();
+  document.getElementById('page-auth').classList.remove('hidden');
+  switchAuthPageTab(tabName || 'login');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function switchAuthPageTab(tabName) {
+  ['login','register'].forEach(t => {
+    const btn = document.getElementById('auth-tab-' + t);
+    const form = document.getElementById('auth-form-' + t);
+    if (btn) { btn.classList.toggle('active', t === tabName); btn.setAttribute('aria-selected', String(t === tabName)); }
+    if (form) form.classList.toggle('hidden', t !== tabName);
+  });
+  const otpForm = document.getElementById('auth-form-otp');
+  if (otpForm) otpForm.classList.add('hidden');
+}
+
+function autoFillDemo() {
+  document.getElementById('login-email').value = 'meenadevi@bharat.in';
+  document.getElementById('login-password').value = 'demo1234';
+  showToast('⚡', 'Demo credentials filled!');
+}
+
+function submitPageLogin() {
+  const identity = (document.getElementById('login-email').value || '').trim();
+  const password = document.getElementById('login-password').value;
+  if (!identity) { showToast('⚠️', 'Please enter your email or phone number.'); return; }
+  if (!password) { showToast('⚠️', 'Please enter your password.'); return; }
+  const btn = event.target;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Signing In…';
+  showToast('🔐', 'Verifying your identity…');
+  setTimeout(() => {
+    btn.disabled = false;
+    btn.innerHTML = 'Sign In Securely 🔐';
+    completeLogin(identity);
+  }, 1000);
+}
+
+function submitPageRegister() {
+  const name = (document.getElementById('reg-name').value || '').trim();
+  const email = (document.getElementById('reg-email').value || '').trim();
+  const phone = (document.getElementById('reg-phone').value || '').trim();
+  if (!name) { showToast('⚠️', 'Please enter your full name.'); return; }
+  if (!email) { showToast('⚠️', 'Please enter your email address.'); return; }
+  if (!phone || phone.length < 10) { showToast('⚠️', 'Please enter a valid 10-digit phone number.'); return; }
+  showToast('📱', `Sending OTP to +91 ${phone}…`);
+  document.getElementById('auth-form-register').classList.add('hidden');
+  document.getElementById('auth-form-otp').classList.remove('hidden');
+  document.getElementById('page-otp-sent-text').textContent = `Enter the 6-digit OTP sent to +91 ${phone}`;
+  startOtpCountdown('page-otp-timer', 'page-resend-btn');
+  SaarthiDB.logSql(`INSERT INTO users (name, email, phone) VALUES ('${name}', '${email}', '+91${phone}');`);
+  window._pendingRegister = { name, email, phone };
+}
+
+function verifyPageOtp() {
+  const otp = [1,2,3,4,5,6].map(i => (document.getElementById('page-otp-' + i).value || '')).join('');
+  if (otp.length < 6) { showToast('⚠️', 'Please enter the complete 6-digit OTP.'); return; }
+  showToast('🔐', 'Verifying OTP…');
+  setTimeout(() => {
+    const reg = window._pendingRegister || {};
+    const user = {
+      id: 'usr_' + Math.random().toString(36).substr(2, 9),
+      full_name: reg.name || 'Saarthi User',
+      email: reg.email || 'user@bharat.in',
+      phone: '+91 ' + (reg.phone || '9876543210'),
+      preferred_language: 'Hindi',
+      created_at: new Date().toISOString()
+    };
+    SaarthiDB.users.push(user);
+    SaarthiDB.save();
+    completeLoginWithUser(user);
+  }, 800);
+}
+
+function autoFillPageOtp() {
+  [1,2,3,4,5,6].forEach((i,idx) => { document.getElementById('page-otp-' + i).value = String(idx + 1); });
+}
+
+function focusNextPageOtp(index) {
+  const box = document.getElementById('page-otp-' + index);
+  if (box && box.value) {
+    const next = document.getElementById('page-otp-' + (index + 1));
+    if (next) next.focus();
+  }
+}
+
+function completeLogin(identity) {
+  let user = SaarthiDB.users.find(u => {
+    const cleanInput = identity.replace(/[^0-9]/g, '');
+    const cleanDb = (u.phone || '').replace(/[^0-9]/g, '');
+    return u.email === identity || (cleanInput && cleanDb.includes(cleanInput));
+  });
+  if (!user) {
+    user = {
+      id: 'usr_' + Math.random().toString(36).substr(2, 9),
+      full_name: identity.includes('@') ? identity.split('@')[0].replace(/[^a-zA-Z\s]/g,' ').trim() || 'Saarthi User' : 'Saarthi User',
+      email: identity.includes('@') ? identity : 'user@bharat.in',
+      phone: !identity.includes('@') ? '+91 ' + identity : '+91 99988 87766',
+      preferred_language: 'Hindi',
+      created_at: new Date().toISOString()
+    };
+    SaarthiDB.users.push(user);
+  }
+  completeLoginWithUser(user);
+}
+
+function completeLoginWithUser(user) {
+  currentUserId = user.id;
+  const jwt = 'eyJ.' + btoa(JSON.stringify({ uid: user.id })) + '.SaarthiKey';
+  SaarthiDB.user_sessions.push({ session_id: 'ses_' + Date.now(), user_id: user.id, jwt, created_at: new Date().toISOString() });
+  SaarthiDB.save();
+  SaarthiDB.logSql(`INSERT INTO user_sessions (user_id, jwt) VALUES ('${user.id}', '${jwt}');`);
+  updateNavAuthSection(user);
+  showToast('🎉', `Welcome back, ${user.full_name}! 🙏`);
+  const targetMode = localStorage.getItem('saarthi_target_mode');
+  if (targetMode) { localStorage.removeItem('saarthi_target_mode'); startOnboarding(); }
+  else { startOnboarding(); }
+}
+
+function updateNavAuthSection(user) {
+  const section = document.getElementById('nav-auth-section');
+  if (!section) return;
+  const initials = user.full_name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+  section.innerHTML = `
+    <div class="profile-badge" onclick="showDashboardModesPanel()" role="button" tabindex="0" aria-label="View profile for ${user.full_name}">
+      <div class="profile-avatar">${initials}</div>
+      <span class="font-body" style="font-weight:700; font-size:0.85rem;">${user.full_name.split(' ')[0]}</span>
+    </div>`;
+}
+
+/* ── F. OTP MODAL FLOWS ── */
+function showAuthModal() {
+  document.getElementById('auth-modal').classList.add('active');
+  document.getElementById('auth-step-options').classList.remove('hidden');
+  document.getElementById('auth-step-phone').classList.add('hidden');
+  document.getElementById('auth-step-otp').classList.add('hidden');
+}
+
+function closeAuthModal() {
+  document.getElementById('auth-modal').classList.remove('active');
+}
+
+function switchAuthStep(step) {
+  document.getElementById('auth-step-options').classList.add('hidden');
+  document.getElementById('auth-step-phone').classList.add('hidden');
+  document.getElementById('auth-step-otp').classList.add('hidden');
+  document.getElementById('auth-step-' + step).classList.remove('hidden');
+}
+
+function sendOtpCodeMock() {
+  const phone = (document.getElementById('auth-phone-field').value || '').trim();
+  if (phone.length < 10) { showToast('⚠️', 'Please enter a valid 10-digit phone number.'); return; }
+  showToast('📱', `OTP sent to +91 ${phone}!`);
+  document.getElementById('otp-sent-text').textContent = `Enter the 6-digit OTP sent to +91 ${phone}`;
+  switchAuthStep('otp');
+  startOtpCountdown('otp-timer', null);
+}
+
+function focusNextOtp(index) {
+  const box = document.getElementById('otp-' + index);
+  if (box && box.value) { box.classList.add('filled'); const next = document.getElementById('otp-' + (index + 1)); if (next) next.focus(); }
+}
+
+function autoFillMockOtp() { [1,2,3,4,5,6].forEach((i, idx) => { const el = document.getElementById('otp-' + i); if (el) { el.value = idx + 1; el.classList.add('filled'); } }); }
+
+function verifyOtpCodeMock() {
+  const otp = [1,2,3,4,5,6].map(i => (document.getElementById('otp-' + i)?.value || '')).join('');
+  if (otp.length < 6) { showToast('⚠️', 'Please fill all 6 OTP digits.'); return; }
+  closeAuthModal();
+  showToast('✅', 'Phone verified successfully!');
+  const phone = document.getElementById('auth-phone-field').value;
+  completeLogin(phone);
+}
+
+function loginWithEmailMock() {
+  const email = (document.getElementById('auth-email-field').value || '').trim();
+  if (!email || !email.includes('@')) { showToast('⚠️', 'Please enter a valid email address.'); return; }
+  closeAuthModal();
+  completeLogin(email);
+}
+
+function loginWithGoogleMock() {
+  closeAuthModal();
+  showToast('🔐', 'Simulating Google OAuth…');
+  setTimeout(() => completeLogin('google.user@gmail.com'), 800);
+}
+
+function startOtpCountdown(spanId, btnId) {
+  let seconds = 30;
+  if (otpResendTimer) clearInterval(otpResendTimer);
+  const spanEl = document.getElementById(spanId);
+  const btnEl = btnId ? document.getElementById(btnId) : null;
+  if (btnEl) btnEl.disabled = true;
+  otpResendTimer = setInterval(() => {
+    seconds--;
+    if (spanEl) spanEl.textContent = seconds + (spanId === 'otp-timer' ? 's' : '');
+    if (seconds <= 0) {
+      clearInterval(otpResendTimer);
+      if (spanEl) spanEl.textContent = '0';
+      if (btnEl) btnEl.disabled = false;
+    }
+  }, 1000);
+}
+
+function resendOtp() { showToast('📱', 'OTP resent!'); startOtpCountdown('page-otp-timer', 'page-resend-btn'); }
+
+/* ── G. ONBOARDING ── */
+const onboardingQuestions = [
+  { field: 'language', title: 'What language do you prefer?', subtitle: 'Saarthi will speak and respond in your chosen language.', options: ['Hindi 🇮🇳', 'Tamil 🌟', 'Telugu 💎', 'Marathi 🌸', 'English 🌐'] },
+  { field: 'comfort_level', title: 'How comfortable are you with smartphones?', subtitle: 'We personalize the interface based on your tech comfort level.', options: ['Very new to smartphones', 'I know the basics', 'I use apps daily', 'I am quite advanced'] },
+  { field: 'goals', title: 'What do you mainly want help with?', subtitle: 'Choose your primary goal. You can access all features from the dashboard.', options: ['Home & Kitchen management', 'Running my business', 'Staying safe from scams', 'Studying and career growth'] },
+  { field: 'tech_fear', title: 'What worries you most about technology?', subtitle: 'Saarthi will give you extra confidence in these areas.', options: ['Online banking & payments', 'Scams & fake calls', 'Too many complicated steps', 'Privacy & data safety'] },
+  { field: 'voice_preference', title: 'Would you like voice guidance?', subtitle: 'Saarthi can speak instructions aloud in your preferred language.', options: ['Yes, please speak to me!', 'Only for important alerts', 'I prefer text only'] }
+];
+let currentOnboardingIndex = 0;
+let onboardingSelectedAnswers = {};
+
+function startOnboarding() {
+  hideAllPages();
+  document.getElementById('page-onboarding').classList.remove('hidden');
+  currentOnboardingIndex = 0;
+  onboardingSelectedAnswers = {};
+  renderOnboardingQuestion();
+}
+
+function renderOnboardingQuestion() {
+  const q = onboardingQuestions[currentOnboardingIndex];
+  document.getElementById('ob-question-title').textContent = q.title;
+  document.getElementById('ob-question-subtitle').textContent = q.subtitle;
+  const optCont = document.getElementById('ob-options-container');
+  optCont.innerHTML = '';
+  q.options.forEach(opt => {
+    const div = document.createElement('div');
+    div.className = 'onboarding-option font-body' + (onboardingSelectedAnswers[q.field] === opt ? ' selected' : '');
+    div.setAttribute('role', 'radio');
+    div.setAttribute('aria-checked', onboardingSelectedAnswers[q.field] === opt ? 'true' : 'false');
+    div.setAttribute('tabindex', '0');
+    div.textContent = opt;
+    div.onclick = () => { onboardingSelectedAnswers[q.field] = opt; renderOnboardingQuestion(); };
+    div.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); div.onclick(); } };
+    optCont.appendChild(div);
+  });
+  for (let i = 0; i < 5; i++) {
+    const dot = document.getElementById('ob-dot-' + i);
+    if (dot) dot.classList.toggle('active', i <= currentOnboardingIndex);
+  }
+  document.getElementById('onboarding-back-btn').style.visibility = currentOnboardingIndex === 0 ? 'hidden' : 'visible';
+  document.getElementById('onboarding-next-btn').textContent = currentOnboardingIndex === onboardingQuestions.length - 1 ? 'Finish & Launch ✦' : 'Continue ✦';
+}
+
+function previousOnboardingStep() { if (currentOnboardingIndex > 0) { currentOnboardingIndex--; renderOnboardingQuestion(); } }
+
+function nextOnboardingStep() {
+  const q = onboardingQuestions[currentOnboardingIndex];
+  if (!onboardingSelectedAnswers[q.field]) { showToast('⚠️', 'Please select an option to continue.'); return; }
+  if (currentOnboardingIndex < onboardingQuestions.length - 1) { currentOnboardingIndex++; renderOnboardingQuestion(); }
+  else { saveOnboardingAnswers(); }
+}
+
+function saveOnboardingAnswers() {
+  showToast('⚙️', 'Configuring your AI companion…');
+  const query = `INSERT INTO onboarding_answers (user_id, answers) VALUES ('${currentUserId}', '${JSON.stringify(onboardingSelectedAnswers)}');`;
+  SaarthiDB.logSql(query);
+  SaarthiDB.onboarding_answers.push({ user_id: currentUserId, answers: onboardingSelectedAnswers, created_at: new Date().toISOString() });
+  SaarthiDB.save();
+  setTimeout(() => {
+    const targetMode = localStorage.getItem('saarthi_target_mode');
+    localStorage.removeItem('saarthi_target_mode');
+    if (targetMode && personas[targetMode]) launchDashboardMode(targetMode);
+    else showDashboardModesPanel();
+  }, 1000);
+}
+
+/* ── H. DASHBOARD ROUTING ── */
+function showDashboardModesPanel() {
+  if (!currentUserId) { showAuthPage('login'); return; }
+  hideAllPages();
+  document.getElementById('page-modes-panel').classList.remove('hidden');
+  const user = SaarthiDB.users.find(u => u.id === currentUserId) || { full_name: 'Saarthi User' };
+  const grid = document.getElementById('modes-panel-grid');
+
+  if (userLockedMode) {
+    const p = personas[userLockedMode];
+    document.getElementById('user-profile-greeting').innerHTML = `Namaste, ${user.full_name} <span class="locked-badge">🌸 ${p.name} Locked</span>`;
+    grid.style.cssText = 'grid-template-columns:1fr; max-width:680px; margin:0 auto;';
+    grid.innerHTML = `
+      <div class="card font-body select-persona-card anim-slide-up" style="border:2.5px solid ${p.accentColor}; padding:40px; text-align:center; border-radius:32px;">
+        <div style="width:80px;height:80px;border:2px solid ${p.accentColor};background:${p.secondaryColor};border-radius:50%;font-size:3rem;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">${p.avatar}</div>
+        <h3 class="font-royal" style="font-size:1.8rem;color:var(--royal-indigo);margin-bottom:8px;">${p.name} Mode</h3>
+        <p class="font-body" style="font-size:0.95rem;color:#5a5a8a;font-style:italic;margin-bottom:28px;">"${p.welcomeSubtitle}"</p>
+        <div style="background:var(--warm-ivory);border:1.5px solid var(--theme-border);border-radius:20px;padding:24px;text-align:left;margin-bottom:24px;">
+          <h4 class="font-royal" style="color:var(--royal-indigo);margin-bottom:12px;font-size:1rem;">👤 User Profile</h4>
+          <table style="width:100%;border-collapse:collapse;font-size:0.9rem;line-height:2;">
+            <tr><td style="color:#5a5a8a;width:40%;font-weight:700;">Name:</td><td style="font-weight:600;">${user.full_name}</td></tr>
+            <tr><td style="color:#5a5a8a;font-weight:700;">Phone:</td><td style="font-weight:600;">${user.phone || '+91 99988 87766'}</td></tr>
+            <tr><td style="color:#5a5a8a;font-weight:700;">Language:</td><td style="font-weight:600;">${user.preferred_language || 'Hindi'}</td></tr>
+            <tr><td style="color:#5a5a8a;font-weight:700;">Auth:</td><td style="font-family:monospace;color:#10B981;font-size:0.75rem;">JWT ✓</td></tr>
+          </table>
+        </div>
+        <div style="display:flex;gap:16px;">
+          <button class="btn btn-royal" style="flex:1;background:${p.primaryColor};color:${['business','student'].includes(userLockedMode)?'#fff':'var(--royal-indigo-deep)'};" onclick="launchDashboardMode('${userLockedMode}')">Enter Workspace ✦</button>
+          <button class="btn btn-outline" style="color:#ef4444;border-color:#fca5a5;background:#fef2f2;" onclick="unlockUserMode()">🔄 Switch Mode</button>
+        </div>
+      </div>`;
+  } else {
+    document.getElementById('user-profile-greeting').innerHTML = `Namaste, ${user.full_name} 🙏`;
+    grid.style.cssText = 'grid-template-columns:repeat(4,1fr); max-width:1200px; margin:0 auto;';
+    grid.innerHTML = Object.entries(personas).map(([key, p]) => `
+      <div class="card font-body select-persona-card" onclick="lockUserMode('${key}')" role="button" tabindex="0" aria-label="Choose ${p.name}" onkeydown="if(event.key==='Enter')lockUserMode('${key}')">
+        <div style="width:64px;height:64px;border:2px solid ${p.accentColor};background:${p.secondaryColor};border-radius:50%;font-size:2.2rem;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">${p.avatar}</div>
+        <h3 class="font-royal text-center" style="margin-top:12px;font-size:1.3rem;">${p.name}</h3>
+        <p class="text-center font-body" style="font-size:0.8rem;color:#5a5a8a;margin-top:6px;">${p.welcomeSubtitle.slice(0,60)}…</p>
+        <button class="btn btn-royal w-full justify-center" style="background:${p.primaryColor};margin-top:18px;color:${['business','student'].includes(key)?'#fff':'var(--royal-indigo-deep)'};">Choose ${p.name}</button>
+      </div>`).join('');
+  }
+}
+
+function selectModeOnCard(modeKey) {
+  if (!currentUserId) { localStorage.setItem('saarthi_target_mode', modeKey); showAuthPage('login'); }
+  else if (userLockedMode && userLockedMode !== modeKey) { showToast('⚠️', `You are locked to ${personas[userLockedMode].name} Mode.`); launchDashboardMode(userLockedMode); }
+  else { lockUserMode(modeKey); }
+}
+
+function lockUserMode(modeKey) {
+  userLockedMode = modeKey;
+  localStorage.setItem('saarthi_locked_mode', modeKey);
+  launchDashboardMode(modeKey);
+}
+
+function unlockUserMode() {
+  userLockedMode = null;
+  localStorage.removeItem('saarthi_locked_mode');
+  showDashboardModesPanel();
+}
+
+function launchDashboardMode(modeKey) {
+  if (!personas[modeKey]) return;
+  hideAllPages();
+  activeMode = modeKey;
+  const p = personas[modeKey];
+  document.documentElement.style.setProperty('--theme-primary', p.primaryColor);
+  document.documentElement.style.setProperty('--theme-secondary', p.accentColor);
+  document.documentElement.style.setProperty('--theme-accent', p.accentColor);
+  document.documentElement.style.setProperty('--theme-bg', p.bgColor);
+  document.documentElement.style.setProperty('--theme-border', hexToRgba(p.accentColor, 0.25));
+  document.getElementById('dash-companion-avatar').textContent = p.avatar;
+  document.getElementById('dash-companion-avatar').style.borderColor = p.accentColor;
+  document.getElementById('dash-companion-name').textContent = p.name;
+  document.getElementById('dash-companion-role').textContent = p.role;
+  document.getElementById('dash-view-title').textContent = p.welcomeTitle;
+  document.getElementById('dash-view-subtitle').textContent = p.welcomeSubtitle;
+  // Senior mode body class for larger fonts
+  document.body.className = modeKey === 'senior' ? 'senior-mode' : '';
+  const menuContainer = document.getElementById('dash-menu-tabs');
+  menuContainer.innerHTML = '';
+  p.menu.forEach((tab, i) => {
+    const btn = document.createElement('button');
+    btn.className = `sidebar-menu-btn ${i === 0 ? 'active' : ''}`;
+    btn.id = `sidebar-tab-${tab.id}`;
+    btn.setAttribute('role', 'tab');
+    btn.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+    btn.onclick = () => switchDashboardTab(tab.id);
+    btn.onkeydown = (e) => { if (e.key === 'Enter') switchDashboardTab(tab.id); };
+    btn.innerHTML = `<span aria-hidden="true">${tab.icon}</span> ${tab.label}`;
+    menuContainer.appendChild(btn);
+  });
+  document.getElementById('page-dashboard').classList.remove('hidden');
+  switchDashboardTab(p.menu[0].id);
+  SaarthiDB.logSql(`-- Dashboard launched: mode=[${modeKey}]`);
+  speakMockText(`Namaste! ${p.name} is ready to help you.`);
+}
+
+function switchDashboardTab(tabId) {
+  activeTab = tabId;
+  document.querySelectorAll('.sidebar-menu-btn').forEach(btn => { btn.classList.remove('active'); btn.setAttribute('aria-selected', 'false'); });
+  const activeBtn = document.getElementById(`sidebar-tab-${tabId}`);
+  if (activeBtn) { activeBtn.classList.add('active'); activeBtn.setAttribute('aria-selected', 'true'); }
+  renderFeatureTabContent(tabId);
+  SaarthiDB.logSql(`-- Tab switched: [${activeMode}].[${tabId}]`);
+}
+
+function hexToRgba(hex, alpha) {
+  const h = hex.replace('#','');
+  const r = parseInt(h.substring(0,2),16), g = parseInt(h.substring(2,4),16), b = parseInt(h.substring(4,6),16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+/* ── I. FEATURE TAB RENDERERS ── */
+function renderFeatureTabContent(tabId) {
+  const c = document.getElementById('dash-feature-container');
+  c.innerHTML = '';
+  c.className = 'anim-slide-up';
+
+  if (activeMode === 'amma') {
+    if (tabId === 'recipe') {
+      c.innerHTML = `
+        <div class="card font-body">
+          <h3 class="font-royal" style="margin-bottom:8px;font-size:1.4rem;">🍳 Traditional Recipe AI</h3>
+          <p style="color:#5a5a8a;margin-bottom:20px;">Enter whatever ingredients you have and Lakshmi Amma will suggest a recipe!</p>
+          <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+            <input type="text" class="input" id="recipe-ingredients-input" placeholder="e.g. Tomato, Potato, Onion, Rice" style="flex:1;min-width:200px;" aria-label="Enter ingredients">
+            <select class="nav-lang-picker" id="recipe-lang-select" aria-label="Select output language">
+              <option value="Hindi">Hindi (हिंदी)</option>
+              <option value="Tamil">Tamil (தமிழ்)</option>
+              <option value="Telugu">Telugu (తెలుగు)</option>
+              <option value="English">English</option>
+            </select>
+            <button class="btn btn-royal" onclick="triggerGenerateRecipeAPI()">Generate Recipe 🍳</button>
+          </div>
+          <div id="recipe-response-box" class="hidden" style="border:2px dashed rgba(212,175,55,0.3);border-radius:18px;padding:20px;background:var(--pearl-ivory);"></div>
+        </div>`;
+    } else if (tabId === 'grocery') {
+      c.innerHTML = `
+        <div class="grid" style="grid-template-columns:1fr 1fr;gap:24px;">
+          <div class="card font-body">
+            <h3 class="font-royal" style="margin-bottom:12px;font-size:1.3rem;">🛒 Add Groceries</h3>
+            <div style="display:flex;gap:8px;margin-bottom:18px;">
+              <input type="text" class="input" id="g-item-name" placeholder="Item (e.g. Mustard Oil 1L)" aria-label="Grocery item name">
+              <input type="number" class="input" id="g-item-price" placeholder="₹ Price" style="width:100px;" min="0" aria-label="Item price">
+              <button class="btn btn-royal" onclick="addGroceryItemMock()">Add</button>
+            </div>
+            <div style="background:#f9f9ff;border-radius:14px;padding:12px;" id="grocery-items-ul" role="list"></div>
+          </div>
+          <div class="card font-body" style="background:#FFF8EE;">
+            <h3 class="font-royal" style="margin-bottom:12px;font-size:1.3rem;">📊 Budget Summary</h3>
+            <div id="grocery-budget-summary" style="margin-bottom:16px;"><p style="color:#5a5a8a;font-style:italic;">No items added yet.</p></div>
+            <button class="btn btn-royal w-full justify-center" onclick="triggerOptimizeGroceryAPI()">Optimize Budget 💰</button>
+          </div>
+        </div>`;
+      renderGroceryListRows();
+    } else if (tabId === 'scam') {
+      c.innerHTML = `
+        <div class="card font-body">
+          <h3 class="font-royal" style="margin-bottom:8px;font-size:1.4rem;">🛡️ Scam Screenshot Detector</h3>
+          <p style="color:#5a5a8a;margin-bottom:20px;">Paste any suspicious message or upload a screenshot. Saarthi will analyse it for scam patterns.</p>
+          <textarea class="input" id="scam-text-input" rows="5" placeholder="Paste suspicious message here... e.g. 'Congratulations! You won Rs 50,000. Click here to claim.'" aria-label="Paste suspicious message"></textarea>
+          <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;">
+            <button class="btn btn-royal" onclick="analyzeScamText()">Analyze for Scam 🔍</button>
+            <button class="btn btn-outline" onclick="loadDemoScam()">Load Demo Scam</button>
+          </div>
+          <div id="scam-result-box" class="hidden" style="margin-top:20px;"></div>
+        </div>`;
+    } else if (tabId === 'reminders') {
+      c.innerHTML = `
+        <div class="card font-body">
+          <h3 class="font-royal" style="margin-bottom:12px;font-size:1.4rem;">⏰ Medicine & Birthday Reminders</h3>
+          <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+            <select class="nav-lang-picker" id="reminder-type" style="flex:0 0 auto;" aria-label="Reminder type">
+              <option value="medicine">💊 Medicine</option>
+              <option value="birthday">🎂 Birthday</option>
+              <option value="appointment">🏥 Appointment</option>
+            </select>
+            <input type="text" class="input" id="reminder-title" placeholder="e.g. Blood pressure tablet" style="flex:1;" aria-label="Reminder name">
+            <input type="time" class="input" id="reminder-time" style="width:130px;" aria-label="Reminder time">
+            <button class="btn btn-royal" onclick="addReminderMock()">Set Reminder</button>
+          </div>
+          <div id="reminders-list" style="display:flex;flex-direction:column;gap:10px;" role="list"></div>
+        </div>`;
+      renderRemindersList();
+    }
+  }
+
+  else if (activeMode === 'business') {
+    if (tabId === 'invoice') {
+      c.innerHTML = `
+        <div class="card font-body">
+          <h3 class="font-royal" style="margin-bottom:8px;font-size:1.4rem;">🧾 GST Invoice Generator</h3>
+          <p style="color:#5a5a8a;margin-bottom:20px;">Create professional GST invoices for your customers in seconds.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+            <div><label style="font-weight:700;display:block;margin-bottom:6px;" for="inv-customer">Customer Name</label><input type="text" class="input" id="inv-customer" placeholder="Ramesh Kumar" autocomplete="name"></div>
+            <div><label style="font-weight:700;display:block;margin-bottom:6px;" for="inv-phone">Phone</label><input type="tel" class="input" id="inv-phone" placeholder="9876543210" inputmode="numeric"></div>
+            <div><label style="font-weight:700;display:block;margin-bottom:6px;" for="inv-item">Item / Service</label><input type="text" class="input" id="inv-item" placeholder="Kapda set x2"></div>
+            <div><label style="font-weight:700;display:block;margin-bottom:6px;" for="inv-price">Amount (₹)</label><input type="number" class="input" id="inv-price" placeholder="5000" min="0" inputmode="decimal"></div>
+          </div>
+          <button class="btn btn-royal" onclick="triggerGenerateInvoiceAPI()">Generate GST Invoice 🧾</button>
+          <div id="invoice-result-box" class="hidden" style="margin-top:24px;"></div>
+          <div style="margin-top:24px;"><h4 class="font-royal" style="margin-bottom:12px;">Recent Invoices</h4><div id="invoice-history" style="display:flex;flex-direction:column;gap:10px;"></div></div>
+        </div>`;
+      renderInvoiceHistory();
+    } else if (tabId === 'marketing') {
+      c.innerHTML = `
+        <div class="card font-body">
+          <h3 class="font-royal" style="margin-bottom:8px;font-size:1.4rem;">📱 WhatsApp Ad Copy Writer</h3>
+          <p style="color:#5a5a8a;margin-bottom:20px;">Generate engaging marketing messages for your shop in seconds.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+            <div><label style="font-weight:700;display:block;margin-bottom:6px;" for="ad-product">Product / Offer</label><input type="text" class="input" id="ad-product" placeholder="Diwali Sale — 30% off all sarees"></div>
+            <div><label style="font-weight:700;display:block;margin-bottom:6px;" for="ad-lang">Language</label>
+              <select class="nav-lang-picker w-full" id="ad-lang" style="border-radius:16px;border:2px solid var(--theme-border);" aria-label="Ad language">
+                <option value="Hindi">Hindi</option><option value="English">English</option><option value="Tamil">Tamil</option>
+              </select></div>
+          </div>
+          <button class="btn btn-royal" onclick="triggerGenerateAdAPI()">Write Ad Copy ✍️</button>
+          <div id="ad-response-box" class="hidden" style="margin-top:20px;border:2px dashed var(--theme-border);border-radius:18px;padding:20px;"></div>
+        </div>`;
+    } else if (tabId === 'analytics') {
+      c.innerHTML = `
+        <div class="card font-body">
+          <h3 class="font-royal" style="margin-bottom:16px;font-size:1.4rem;">📊 Shop Analytics Dashboard</h3>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;">
+            <div style="background:var(--pearl-ivory);border-radius:16px;padding:20px;text-align:center;border:1.5px solid var(--theme-border);">
+              <div style="font-size:1.8rem;font-weight:800;color:var(--theme-primary);">₹${(SaarthiDB.invoices.reduce((a,inv) => a+inv.total,0)||24560).toLocaleString('en-IN')}</div>
+              <div style="font-size:0.8rem;color:#5a5a8a;margin-top:4px;">Total Revenue</div>
+            </div>
+            <div style="background:var(--pearl-ivory);border-radius:16px;padding:20px;text-align:center;border:1.5px solid var(--theme-border);">
+              <div style="font-size:1.8rem;font-weight:800;color:var(--theme-primary);">${SaarthiDB.invoices.length || 12}</div>
+              <div style="font-size:0.8rem;color:#5a5a8a;margin-top:4px;">Invoices Generated</div>
+            </div>
+            <div style="background:var(--pearl-ivory);border-radius:16px;padding:20px;text-align:center;border:1.5px solid var(--theme-border);">
+              <div style="font-size:1.8rem;font-weight:800;color:#27AE60;">+18%</div>
+              <div style="font-size:0.8rem;color:#5a5a8a;margin-top:4px;">Growth This Month</div>
+            </div>
+          </div>
+          <button class="btn btn-royal" onclick="showToast('📊','Analytics report generated and logged!')">Refresh Analytics 🔄</button>
+        </div>`;
+    }
+  }
+
+  else if (activeMode === 'senior') {
+    if (tabId === 'sos') {
+      c.innerHTML = `
+        <div class="card font-body" style="text-align:center;">
+          <h3 class="font-royal" style="margin-bottom:8px;font-size:1.6rem;">🆘 Emergency SOS</h3>
+          <p style="color:#5a5a8a;margin-bottom:28px;font-size:1.05rem;">Press the big red button below to immediately alert your family members and emergency contacts.</p>
+          <button onclick="triggerEmergencySOS()" aria-label="Activate Emergency SOS" style="width:180px;height:180px;border-radius:50%;background:linear-gradient(135deg,#e11d48,#be123c);color:#fff;font-size:1.4rem;font-weight:800;border:none;cursor:pointer;box-shadow:0 0 0 12px rgba(225,29,72,0.2),0 20px 40px rgba(225,29,72,0.4);animation:breathe 2s ease-in-out infinite;font-family:'Poppins',sans-serif;">
+            🚨<br>SOS<br><span style="font-size:0.8rem;opacity:0.9;">Call Family</span>
+          </button>
+          <p style="margin-top:28px;color:#5a5a8a;font-size:0.9rem;">This will alert: <strong>Ramesh (Son) · Priya (Daughter)</strong></p>
+          <div id="sos-result" class="hidden" style="margin-top:20px;"></div>
+        </div>`;
+    } else if (tabId === 'banking') {
+      c.innerHTML = `
+        <div class="card font-body">
+          <h3 class="font-royal" style="margin-bottom:8px;font-size:1.4rem;">🏦 Safe Banking Guide</h3>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:16px;">
+            ${[
+              ['🔐', 'Never share your OTP with anyone, even bank staff.', 'danger'],
+              ['📵', 'Real banks NEVER ask for your PIN on the phone.', 'danger'],
+              ['✅', 'Always check the bank URL starts with https://', 'success'],
+              ['📞', 'Bank helpline: 1800 XXX XXXX (toll free)', 'success']
+            ].map(([icon, text, type]) => `
+              <div style="display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:14px;background:${type==='danger'?'#fef2f2':'#f0fdf4'};border:1px solid ${type==='danger'?'#fecaca':'#bbf7d0'};" role="listitem">
+                <span style="font-size:1.3rem;">${icon}</span>
+                <p style="font-size:0.95rem;color:${type==='danger'?'#991b1b':'#166534'};line-height:1.5;">${text}</p>
+              </div>`).join('')}
+          </div>
+          <button class="btn btn-royal w-full justify-center" style="margin-top:20px;" onclick="showToast('✅','Remember: Stay safe online! Never share OTPs.')">I Understand — Keep Me Safe ✓</button>
+        </div>`;
+    } else if (tabId === 'medicine') {
+      c.innerHTML = `
+        <div class="card font-body">
+          <h3 class="font-royal" style="margin-bottom:12px;font-size:1.4rem;">💊 Medicine Schedule</h3>
+          <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+            <input type="text" class="input" id="med-name" placeholder="Medicine name (e.g. Metformin)" style="flex:1;" aria-label="Medicine name">
+            <input type="time" class="input" id="med-time" style="width:130px;" aria-label="Dose time">
+            <button class="btn btn-royal" onclick="addMedicineMock()">Add Dose</button>
+          </div>
+          <div id="medicine-list" style="display:flex;flex-direction:column;gap:10px;" role="list"></div>
+        </div>`;
+      renderMedicineList();
+    } else if (tabId === 'video-call') {
+      c.innerHTML = `
+        <div class="card font-body">
+          <h3 class="font-royal" style="margin-bottom:8px;font-size:1.4rem;">📞 Video Call Help Guide</h3>
+          <p style="color:#5a5a8a;margin-bottom:20px;">Step-by-step guide to make a WhatsApp or Google Meet video call.</p>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            ${['Open WhatsApp on your phone', 'Tap on the contact\'s name', 'Tap the 📹 video camera icon at the top', 'Wait for them to answer — your face will appear!', 'To end the call, tap the red ❌ button'].map((step,i) => `
+              <div style="display:flex;gap:14px;align-items:center;padding:14px;background:var(--pearl-ivory);border-radius:14px;border:1.5px solid var(--theme-border);">
+                <div style="width:36px;height:36px;border-radius:50%;background:var(--theme-primary);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${i+1}</div>
+                <p style="font-size:1rem;">${step}</p>
+              </div>`).join('')}
+          </div>
+          <button class="btn btn-royal w-full justify-center" style="margin-top:20px;" onclick="speakMockText('Open WhatsApp. Tap on the contact name. Tap the video camera icon. Wait for them to answer.')">🔊 Read Steps Aloud</button>
+        </div>`;
+    }
+  }
+
+  else if (activeMode === 'student') {
+    if (tabId === 'notes') {
+      c.innerHTML = `
+        <div class="card font-body">
+          <h3 class="font-royal" style="margin-bottom:8px;font-size:1.4rem;">📚 AI Study Notes Generator</h3>
+          <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+            <input type="text" class="input" id="notes-topic" placeholder="Enter topic (e.g. Photosynthesis, World War II)" style="flex:1;" aria-label="Study topic">
+            <select class="nav-lang-picker" id="notes-level" aria-label="Detail level" style="border-radius:16px;border:2px solid var(--theme-border);">
+              <option value="basic">Basic Overview</option>
+              <option value="detailed">Detailed Notes</option>
+              <option value="quiz">Quiz Me!</option>
+            </select>
+            <button class="btn btn-royal" onclick="triggerGenerateNotesAPI()">Generate Notes 📝</button>
+          </div>
+          <div id="notes-response-box" class="hidden" style="border:2px dashed rgba(108,63,212,0.3);border-radius:18px;padding:20px;background:var(--pearl-ivory);"></div>
+        </div>`;
+    } else if (tabId === 'resume') {
+      c.innerHTML = `
+        <div class="card font-body">
+          <h3 class="font-royal" style="margin-bottom:8px;font-size:1.4rem;">📄 AI Resume Optimizer</h3>
+          <p style="color:#5a5a8a;margin-bottom:16px;">Paste your current resume text and target job role for ATS-optimized suggestions.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+            <div><label style="font-weight:700;display:block;margin-bottom:6px;" for="res-role">Target Job Role</label><input type="text" class="input" id="res-role" placeholder="Software Engineer, MBA Intern…"></div>
+            <div><label style="font-weight:700;display:block;margin-bottom:6px;" for="res-skills">Key Skills</label><input type="text" class="input" id="res-skills" placeholder="Python, React, Data Analysis"></div>
+          </div>
+          <textarea class="input" id="res-text" rows="6" placeholder="Paste your resume or key bullet points here…" aria-label="Resume text"></textarea>
+          <button class="btn btn-royal" style="margin-top:12px;" onclick="triggerResumeOptimizerAPI()">Optimize Resume 🚀</button>
+          <div id="resume-result-box" class="hidden" style="margin-top:20px;border:2px dashed rgba(108,63,212,0.3);border-radius:18px;padding:20px;background:var(--pearl-ivory);"></div>
+        </div>`;
+    } else if (tabId === 'hackathon') {
+      c.innerHTML = `
+        <div class="card font-body">
+          <h3 class="font-royal" style="margin-bottom:8px;font-size:1.4rem;">💻 Hackathon Idea Generator</h3>
+          <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+            <input type="text" class="input" id="hack-domain" placeholder="Domain (e.g. HealthTech, EdTech, AgriTech)" style="flex:1;" aria-label="Hackathon domain">
+            <button class="btn btn-royal" onclick="triggerHackathonAPI()">Generate Idea 🏆</button>
+          </div>
+          <div id="hackathon-response-box" class="hidden" style="border:2px dashed rgba(108,63,212,0.3);border-radius:18px;padding:20px;background:var(--pearl-ivory);"></div>
+        </div>`;
+    } else if (tabId === 'pomodoro') {
+      c.innerHTML = `
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <div class="card font-body" style="text-align:center;">
+            <h3 class="font-royal" style="margin-bottom:16px;font-size:1.4rem;">⚡ Pomodoro Timer</h3>
+            <div id="pomodoro-timer" style="font-size:4rem;font-weight:800;color:var(--theme-primary);letter-spacing:4px;margin:20px 0;" aria-live="polite" aria-label="Pomodoro timer">25:00</div>
+            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+              <button class="btn btn-royal" onclick="startPomodoroClock()" aria-label="Start Pomodoro timer">▶ Start</button>
+              <button class="btn btn-outline" onclick="resetPomodoroClock()" aria-label="Reset Pomodoro timer">⏹ Reset</button>
+            </div>
+            <p style="margin-top:16px;color:#5a5a8a;font-size:0.85rem;">25 min focus · 5 min break</p>
+          </div>
+          <div class="card font-body">
+            <h3 class="font-royal" style="margin-bottom:12px;font-size:1.3rem;">📋 Study Tasks</h3>
+            <div style="display:flex;gap:8px;margin-bottom:16px;">
+              <input type="text" class="input" id="study-task-title" placeholder="Task to complete…" aria-label="New study task" onkeydown="if(event.key==='Enter')addStudyTaskMock()">
+              <button class="btn btn-royal" onclick="addStudyTaskMock()">Add</button>
+            </div>
+            <div id="student-tasks-ul" style="display:flex;flex-direction:column;gap:8px;" role="list"></div>
+          </div>
+        </div>`;
+      renderStudentTasksRows();
+    }
+  }
+}
+
+/* ── J. API SIMULATION FUNCTIONS ── */
+function triggerGenerateRecipeAPI() {
+  const ing = (document.getElementById('recipe-ingredients-input')?.value || '').trim();
+  const lang = document.getElementById('recipe-lang-select')?.value || 'Hindi';
+  if (!ing) { showToast('⚠️', 'Please enter at least one ingredient.'); return; }
+  const btn = event.target; btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Generating…';
+  showToast('🍳', 'Lakshmi Amma is cooking up a recipe…');
+  const recipeId = 'rec_' + Date.now();
+  const dishName = ing.split(',')[0].trim() + ' ki Sabzi';
+  SaarthiDB.logSql(`INSERT INTO recipes (id, dish, ingredients, lang) VALUES ('${recipeId}','${dishName}','${ing}','${lang}');`);
+  SaarthiDB.logApi('POST', '/api/amma/recipe/create', { ingredients: ing, language: lang }, 200, { recipe_id: recipeId });
+  setTimeout(() => {
+    btn.disabled = false; btn.innerHTML = 'Generate Recipe 🍳';
+    SaarthiDB.recipes.push({ id: recipeId, recipe_name: dishName, ingredients: ing, language: lang, created_at: new Date().toISOString() });
+    SaarthiDB.save();
+    const box = document.getElementById('recipe-response-box');
+    box.classList.remove('hidden');
+    box.innerHTML = `
+      <h4 class="font-royal" style="color:var(--theme-primary);margin-bottom:10px;">🍱 ${dishName} (${lang})</h4>
+      <ol style="padding-left:20px;line-height:2;">
+        <li>Wash and chop the ingredients: <strong>${ing}</strong>.</li>
+        <li>Heat 2 tbsp oil in a kadhai. Add cumin seeds (jeera) and let them splutter.</li>
+        <li>Add chopped onions and sauté until golden. Add ginger-garlic paste.</li>
+        <li>Add tomatoes and cook until soft. Add turmeric, red chilli, coriander powder.</li>
+        <li>Add the main ingredients. Cook on medium heat for 10–12 minutes. Add salt to taste.</li>
+        <li>Garnish with fresh coriander. Serve hot with rotis or rice! 🙏</li>
+      </ol>`;
+    speakMockText('Recipe is ready! ' + dishName + '. Main ingredients: ' + ing);
+  }, 1200);
+}
+
+function triggerOptimizeGroceryAPI() {
+  const items = SaarthiDB.grocery_items.filter(i => i.user_id === currentUserId);
+  if (!items.length) { showToast('⚠️', 'Add some grocery items first.'); return; }
+  const total = items.reduce((a, i) => a + (parseFloat(i.price) || 0), 0);
+  showToast('💰', `Budget optimized! Estimated total: ₹${total.toFixed(0)}`);
+  document.getElementById('grocery-budget-summary').innerHTML = `
+    <div style="font-size:1.5rem;font-weight:800;color:var(--theme-primary);">₹${total.toFixed(0)}</div>
+    <div style="color:#5a5a8a;font-size:0.85rem;margin-top:4px;">Estimated total · ${items.length} items</div>
+    <div style="margin-top:12px;padding:12px;background:#fff;border-radius:12px;border:1.5px solid var(--theme-border);font-size:0.85rem;color:#5a5a8a;">
+      💡 Tip: Buy dal and rice in bulk from wholesale market to save 15–20%.
+    </div>`;
+}
+
+function addGroceryItemMock() {
+  const name = (document.getElementById('g-item-name')?.value || '').trim();
+  const price = document.getElementById('g-item-price')?.value || '0';
+  if (!name) { showToast('⚠️', 'Please enter an item name.'); return; }
+  SaarthiDB.grocery_items.push({ id: 'gi_' + Date.now(), user_id: currentUserId, name, price, created_at: new Date().toISOString() });
+  SaarthiDB.save();
+  SaarthiDB.logSql(`INSERT INTO grocery_items (name, price, user_id) VALUES ('${name}', ${price}, '${currentUserId}');`);
+  document.getElementById('g-item-name').value = '';
+  document.getElementById('g-item-price').value = '';
+  renderGroceryListRows();
+  showToast('✅', `${name} added to grocery list!`);
+}
+
+function renderGroceryListRows() {
+  const ul = document.getElementById('grocery-items-ul');
+  if (!ul) return;
+  const items = SaarthiDB.grocery_items.filter(i => i.user_id === currentUserId);
+  if (!items.length) { ul.innerHTML = '<p style="color:#5a5a8a;font-style:italic;font-size:0.9rem;">No items yet. Add your groceries above.</p>'; return; }
+  ul.innerHTML = items.map(it => `
+    <div role="listitem" style="background:#fff;padding:10px 14px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--theme-border);margin-bottom:6px;">
+      <span style="font-weight:600;">${it.name} ${it.price && it.price !== '0' ? `<span style="color:#5a5a8a;font-size:0.8rem;">₹${it.price}</span>` : ''}</span>
+      <button aria-label="Remove ${it.name}" style="border:none;background:transparent;color:#ef4444;font-weight:700;cursor:pointer;font-size:1rem;" onclick="deleteGroceryItem('${it.id}')">✕</button>
+    </div>`).join('');
+}
+
+function deleteGroceryItem(id) {
+  SaarthiDB.grocery_items = SaarthiDB.grocery_items.filter(i => i.id !== id);
+  SaarthiDB.save();
+  renderGroceryListRows();
+}
+
+function analyzeScamText() {
+  const text = (document.getElementById('scam-text-input')?.value || '').trim();
+  if (!text) { showToast('⚠️', 'Please paste a message to analyze.'); return; }
+  const scamKeywords = ['won', 'prize', 'click', 'verify', 'otp', 'urgent', 'bank account', 'atm', 'lottery', 'free', 'congratulations'];
+  const lower = text.toLowerCase();
+  const found = scamKeywords.filter(k => lower.includes(k));
+  const riskScore = Math.min(Math.round((found.length / 5) * 100), 99);
+  const isScam = riskScore > 50;
+  const box = document.getElementById('scam-result-box');
+  box.classList.remove('hidden');
+  box.innerHTML = `
+    <div style="padding:20px;border-radius:18px;background:${isScam?'#fef2f2':'#f0fdf4'};border:2px solid ${isScam?'#fecaca':'#bbf7d0'};">
+      <div style="font-size:2rem;margin-bottom:8px;">${isScam?'🚨':'✅'}</div>
+      <h4 class="font-royal" style="color:${isScam?'#991b1b':'#166534'};margin-bottom:6px;">${isScam?'HIGH RISK — Likely Scam!':'Appears Safe'}</h4>
+      <p style="font-size:0.9rem;color:#5a5a8a;margin-bottom:8px;">Risk Score: <strong style="color:${isScam?'#ef4444':'#22c55e'};">${riskScore}%</strong></p>
+      ${found.length ? `<p style="font-size:0.85rem;color:#5a5a8a;">Suspicious keywords: <strong>${found.join(', ')}</strong></p>` : ''}
+      ${isScam ? '<p style="margin-top:8px;font-size:0.9rem;color:#991b1b;font-weight:700;">Do NOT click any links. Do NOT share any personal information.</p>' : ''}
+    </div>`;
+  SaarthiDB.logApi('POST', '/api/amma/scam/analyze', { text: text.slice(0,50) }, 200, { risk_score: riskScore, is_scam: isScam });
+}
+
+function loadDemoScam() {
+  document.getElementById('scam-text-input').value = 'Congratulations! You have won Rs 50,000 in the SBI lottery. Click here to claim your prize: bit.ly/claim-now. Verify your OTP to proceed urgently!';
+}
+
+function addReminderMock() {
+  const type = document.getElementById('reminder-type')?.value;
+  const title = (document.getElementById('reminder-title')?.value || '').trim();
+  const time = document.getElementById('reminder-time')?.value;
+  if (!title) { showToast('⚠️', 'Please enter a reminder name.'); return; }
+  SaarthiDB.productivity_tasks.push({ id: 'rem_' + Date.now(), user_id: currentUserId, task_name: title, type, time: time || '09:00', status: 'Active', category: 'reminder' });
+  SaarthiDB.save();
+  document.getElementById('reminder-title').value = '';
+  renderRemindersList();
+  showToast('⏰', `Reminder set: ${title} at ${time || '9:00 AM'}!`);
+}
+
+function renderRemindersList() {
+  const list = document.getElementById('reminders-list');
+  if (!list) return;
+  const items = (SaarthiDB.productivity_tasks || []).filter(t => t.user_id === currentUserId && t.category === 'reminder');
+  if (!items.length) { list.innerHTML = '<p style="color:#5a5a8a;font-style:italic;">No reminders set. Add one above.</p>'; return; }
+  list.innerHTML = items.map(r => `
+    <div role="listitem" style="background:#fff;padding:14px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;border:1.5px solid var(--theme-border);">
+      <div style="display:flex;align-items:center;gap:12px;"><span style="font-size:1.3rem;">${r.type==='medicine'?'💊':r.type==='birthday'?'🎂':'🏥'}</span><div><strong>${r.task_name}</strong><div style="font-size:0.78rem;color:#5a5a8a;">${r.time || '09:00'}</div></div></div>
+      <button aria-label="Remove reminder ${r.task_name}" style="border:none;background:transparent;color:#ef4444;cursor:pointer;font-size:1rem;" onclick="deleteReminder('${r.id}')">✕</button>
+    </div>`).join('');
+}
+
+function deleteReminder(id) {
+  SaarthiDB.productivity_tasks = SaarthiDB.productivity_tasks.filter(t => t.id !== id);
+  SaarthiDB.save();
+  renderRemindersList();
+}
+
+function triggerGenerateInvoiceAPI() {
+  const customer = (document.getElementById('inv-customer')?.value || '').trim();
+  const item = (document.getElementById('inv-item')?.value || '').trim();
+  const price = parseFloat(document.getElementById('inv-price')?.value) || 0;
+  if (!customer || !item || !price) { showToast('⚠️', 'Please fill in all invoice fields.'); return; }
+  const billId = 'INV-' + Math.floor(100000 + Math.random() * 900000);
+  const gst = Math.round(price * 0.18);
+  const total = price + gst;
+  const inv = { id: billId, customer, item, subtotal: price, gst, total, created_at: new Date().toISOString() };
+  SaarthiDB.invoices.push(inv);
+  SaarthiDB.save();
+  SaarthiDB.logSql(`INSERT INTO invoices (id, customer, item, subtotal, gst, total) VALUES ('${billId}','${customer}','${item}',${price},${gst},${total});`);
+  SaarthiDB.logApi('POST', '/api/business/invoice/generate', { customer, item, price }, 200, inv);
+  const box = document.getElementById('invoice-result-box');
+  box.classList.remove('hidden');
+  box.innerHTML = `
+    <div style="border:2px solid var(--theme-border);border-radius:18px;padding:24px;background:#fff;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+        <div><h4 class="font-royal" style="font-size:1.2rem;color:var(--theme-primary);">TAX INVOICE</h4><p style="font-size:0.8rem;color:#5a5a8a;">${billId}</p></div>
+        <span class="status-badge status-success">✓ Generated</span>
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
+        <tr style="border-bottom:1px solid #e5e7eb;"><td style="padding:8px 0;color:#5a5a8a;">Customer</td><td style="text-align:right;font-weight:700;">${customer}</td></tr>
+        <tr style="border-bottom:1px solid #e5e7eb;"><td style="padding:8px 0;color:#5a5a8a;">Item</td><td style="text-align:right;font-weight:700;">${item}</td></tr>
+        <tr style="border-bottom:1px solid #e5e7eb;"><td style="padding:8px 0;color:#5a5a8a;">Subtotal</td><td style="text-align:right;">₹${price.toLocaleString('en-IN')}</td></tr>
+        <tr style="border-bottom:1px solid #e5e7eb;"><td style="padding:8px 0;color:#5a5a8a;">GST (18%)</td><td style="text-align:right;">₹${gst.toLocaleString('en-IN')}</td></tr>
+        <tr><td style="padding:8px 0;font-weight:800;font-size:1.05rem;">Total</td><td style="text-align:right;font-weight:800;font-size:1.1rem;color:var(--theme-primary);">₹${total.toLocaleString('en-IN')}</td></tr>
+      </table>
+      <button class="btn btn-royal" style="margin-top:16px;" onclick="showToast('🖨️','Invoice ready to print or share via WhatsApp!')">Print / Share 📤</button>
+    </div>`;
+  renderInvoiceHistory();
+}
+
+function renderInvoiceHistory() {
+  const hist = document.getElementById('invoice-history');
+  if (!hist) return;
+  if (!SaarthiDB.invoices.length) { hist.innerHTML = '<p style="color:#5a5a8a;font-style:italic;">No invoices yet.</p>'; return; }
+  hist.innerHTML = SaarthiDB.invoices.slice(-5).reverse().map(inv => `
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;border-radius:12px;background:var(--pearl-ivory);border:1px solid var(--theme-border);">
+      <div><strong>${inv.id}</strong> · <span style="color:#5a5a8a;font-size:0.85rem;">${inv.customer} — ${inv.item}</span></div>
+      <strong style="color:var(--theme-primary);">₹${inv.total.toLocaleString('en-IN')}</strong>
+    </div>`).join('');
+}
+
+function triggerGenerateAdAPI() {
+  const product = (document.getElementById('ad-product')?.value || '').trim();
+  const lang = document.getElementById('ad-lang')?.value || 'Hindi';
+  if (!product) { showToast('⚠️', 'Please describe your product or offer.'); return; }
+  const btn = event.target; btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Writing…';
+  showToast('✍️', 'Sharma Ji is writing your ad copy…');
+  const templates = {
+    Hindi: `🎉 बड़ी खुशखबरी! ${product}\n\n✅ बेस्ट क्वालिटी · बेस्ट प्राइस\n📞 अभी संपर्क करें\n🏪 Sharma & Sons — आपका भरोसेमंद दुकान`,
+    English: `🎉 Don't miss out! ${product}\n\n✅ Best Quality · Best Price\n📞 Contact us today!\n🏪 Sharma & Sons — Your Trusted Store`,
+    Tamil: `🎉 அருமையான செய்தி! ${product}\n\n✅ சிறந்த தரம் · சிறந்த விலை\n📞 இப்போதே தொடர்பு கொள்ளுங்கள்`
+  };
+  setTimeout(() => {
+    btn.disabled = false; btn.innerHTML = 'Write Ad Copy ✍️';
+    const box = document.getElementById('ad-response-box');
+    box.classList.remove('hidden');
+    const adText = templates[lang] || templates.Hindi;
+    box.innerHTML = `
+      <h4 class="font-royal" style="color:var(--theme-primary);margin-bottom:10px;">📱 WhatsApp Ad Copy (${lang})</h4>
+      <pre style="font-family:'Poppins',sans-serif;white-space:pre-wrap;font-size:0.95rem;line-height:1.6;">${adText}</pre>
+      <button class="btn btn-royal" style="margin-top:12px;" onclick="navigator.clipboard.writeText('${adText.replace(/'/g,"\\'")}').then(()=>showToast('📋','Ad copy copied to clipboard!'))">Copy to Clipboard 📋</button>`;
+    SaarthiDB.logApi('POST', '/api/business/marketing/generate', { product, lang }, 200, { ad_copy: adText });
+  }, 1200);
+}
+
+function triggerEmergencySOS() {
+  const alertId = 'alert_' + Date.now();
+  SaarthiDB.emergency_alerts.push({ id: alertId, user_id: currentUserId, gps_location: 'India', dispatched_status: 'DISPATCHED', created_at: new Date().toISOString() });
+  SaarthiDB.save();
+  SaarthiDB.logSql(`INSERT INTO emergency_alerts (id, user_id, status) VALUES ('${alertId}','${currentUserId}','DISPATCHED');`);
+  SaarthiDB.logApi('POST', '/api/senior/emergency/sos', { user_id: currentUserId }, 200, { success: true });
+  const result = document.getElementById('sos-result');
+  if (result) {
+    result.classList.remove('hidden');
+    result.innerHTML = `
+      <div style="background:#d1fae5;border:2px solid #34d399;border-radius:16px;padding:20px;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:8px;">✅</div>
+        <h4 style="color:#065f46;font-weight:700;">SOS Dispatched Successfully!</h4>
+        <p style="color:#047857;margin-top:6px;font-size:0.9rem;">Alert sent to Ramesh (Son) & Priya (Daughter). Help is on the way!</p>
+      </div>`;
+  }
+  showToast('🚨', 'Emergency alert sent to your family!');
+  speakMockText('Emergency SOS alert dispatched. Your family has been notified. Stay calm, help is coming.');
+}
+
+function addMedicineMock() {
+  const name = (document.getElementById('med-name')?.value || '').trim();
+  const time = document.getElementById('med-time')?.value;
+  if (!name) { showToast('⚠️', 'Please enter the medicine name.'); return; }
+  SaarthiDB.productivity_tasks.push({ id: 'med_' + Date.now(), user_id: currentUserId, task_name: name, time: time || '09:00', category: 'medicine', status: 'Active' });
+  SaarthiDB.save();
+  document.getElementById('med-name').value = '';
+  renderMedicineList();
+  showToast('💊', `Medicine reminder set for ${name}!`);
+}
+
+function renderMedicineList() {
+  const list = document.getElementById('medicine-list');
+  if (!list) return;
+  const items = (SaarthiDB.productivity_tasks || []).filter(t => t.user_id === currentUserId && t.category === 'medicine');
+  if (!items.length) { list.innerHTML = '<p style="color:#5a5a8a;font-style:italic;">No medicines added yet.</p>'; return; }
+  list.innerHTML = items.map(m => `
+    <div role="listitem" style="background:#fff;padding:14px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;border:1.5px solid var(--theme-border);">
+      <div style="display:flex;align-items:center;gap:12px;"><span style="font-size:1.3rem;">💊</span><div><strong style="font-size:1.05rem;">${m.task_name}</strong><div style="font-size:0.85rem;color:#5a5a8a;">${m.time || '09:00'} daily</div></div></div>
+      <button aria-label="Remove ${m.task_name}" style="border:none;background:transparent;color:#ef4444;cursor:pointer;" onclick="deleteMedicine('${m.id}')">✕</button>
+    </div>`).join('');
+}
+
+function deleteMedicine(id) {
+  SaarthiDB.productivity_tasks = SaarthiDB.productivity_tasks.filter(t => t.id !== id);
+  SaarthiDB.save();
+  renderMedicineList();
+}
+
+function triggerGenerateNotesAPI() {
+  const topic = (document.getElementById('notes-topic')?.value || '').trim();
+  const level = document.getElementById('notes-level')?.value || 'basic';
+  if (!topic) { showToast('⚠️', 'Please enter a study topic.'); return; }
+  const btn = event.target; btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Generating…';
+  showToast('📚', `Generating ${level} notes on ${topic}…`);
+  setTimeout(() => {
+    btn.disabled = false; btn.innerHTML = 'Generate Notes 📝';
+    const box = document.getElementById('notes-response-box');
+    box.classList.remove('hidden');
+    const isQuiz = level === 'quiz';
+    box.innerHTML = isQuiz ? `
+      <h4 class="font-royal" style="color:var(--theme-primary);margin-bottom:10px;">🧠 Quiz: ${topic}</h4>
+      <ol style="padding-left:20px;line-height:2.2;font-size:0.95rem;">
+        <li>What is the primary function of ${topic}?</li>
+        <li>Name three key components of ${topic}.</li>
+        <li>How does ${topic} impact modern society?</li>
+        <li>What year was ${topic} first discovered / introduced?</li>
+        <li>Compare ${topic} with a related concept.</li>
+      </ol>` : `
+      <h4 class="font-royal" style="color:var(--theme-primary);margin-bottom:10px;">📖 ${level === 'detailed' ? 'Detailed' : 'Overview'} Notes: ${topic}</h4>
+      <ul style="padding-left:20px;line-height:2;font-size:0.95rem;">
+        <li><strong>Definition:</strong> ${topic} refers to a key concept in its domain.</li>
+        <li><strong>Key Points:</strong> Origin, significance, modern relevance.</li>
+        <li><strong>Applications:</strong> Used in academics, industry, and research.</li>
+        <li><strong>Remember:</strong> Focus on the core formula/principle for exams.</li>
+        ${level === 'detailed' ? '<li><strong>Deep Dive:</strong> Historical context, notable figures, and critical analysis.</li>' : ''}
+      </ul>`;
+    SaarthiDB.logApi('POST', '/api/student/notes/generate', { topic, level }, 200, { notes: 'generated' });
+  }, 1200);
+}
+
+function triggerResumeOptimizerAPI() {
+  const role = (document.getElementById('res-role')?.value || '').trim();
+  const skills = (document.getElementById('res-skills')?.value || '').trim();
+  if (!role || !skills) { showToast('⚠️', 'Please enter your target role and key skills.'); return; }
+  const btn = event.target; btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Optimizing…';
+  showToast('📄', 'Astra AI is optimizing your resume…');
+  setTimeout(() => {
+    btn.disabled = false; btn.innerHTML = 'Optimize Resume 🚀';
+    const box = document.getElementById('resume-result-box');
+    box.classList.remove('hidden');
+    box.innerHTML = `
+      <h4 class="font-royal" style="color:var(--theme-primary);margin-bottom:10px;">🎯 ATS-Optimized for: ${role}</h4>
+      <p style="margin-bottom:10px;"><strong>Suggested improvements:</strong></p>
+      <ul style="padding-left:20px;line-height:2;font-size:0.9rem;">
+        <li>Add <strong>${skills.split(',')[0]?.trim()}</strong> as a key skill in the summary section.</li>
+        <li>Use action verbs: "Developed", "Implemented", "Led", "Optimized".</li>
+        <li>Quantify achievements: "Increased efficiency by 30%", "Managed 5-person team".</li>
+        <li>Add a tailored objective for <strong>${role}</strong> roles.</li>
+        <li>ATS Keywords detected: <span style="color:var(--theme-primary);font-weight:700;">${skills}</span></li>
+      </ul>
+      <div style="margin-top:12px;padding:10px 14px;background:#f0fdf4;border-radius:10px;border:1px solid #bbf7d0;font-size:0.85rem;color:#166534;">
+        ✅ ATS Score improved from ~52% → <strong>88%</strong>
+      </div>`;
+  }, 1500);
+}
+
+function triggerHackathonAPI() {
+  const domain = (document.getElementById('hack-domain')?.value || '').trim();
+  if (!domain) { showToast('⚠️', 'Please enter a domain or theme.'); return; }
+  const btn = event.target; btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Generating…';
+  showToast('💻', `Generating hackathon idea for ${domain}…`);
+  setTimeout(() => {
+    btn.disabled = false; btn.innerHTML = 'Generate Idea 🏆';
+    const box = document.getElementById('hackathon-response-box');
+    box.classList.remove('hidden');
+    box.innerHTML = `
+      <h4 class="font-royal" style="color:var(--theme-primary);margin-bottom:10px;">🏆 Hackathon Blueprint: ${domain}</h4>
+      <table style="width:100%;border-collapse:collapse;font-size:0.9rem;line-height:1.8;">
+        <tr><td style="color:#5a5a8a;width:35%;padding:6px 0;font-weight:700;">Project Name:</td><td>Saarthi ${domain.split(' ')[0]} Assist</td></tr>
+        <tr><td style="color:#5a5a8a;font-weight:700;padding:6px 0;">Tech Stack:</td><td>Next.js · Tailwind CSS · Node.js · MongoDB</td></tr>
+        <tr><td style="color:#5a5a8a;font-weight:700;padding:6px 0;">Problem:</td><td>Lack of accessible ${domain} tools for rural India</td></tr>
+        <tr><td style="color:#5a5a8a;font-weight:700;padding:6px 0;">Solution:</td><td>Voice-first AI app in Hindi + regional languages</td></tr>
+        <tr><td style="color:#5a5a8a;font-weight:700;padding:6px 0;">USP:</td><td>Works offline via PWA · 22 Indian languages support</td></tr>
+      </table>`;
+    SaarthiDB.logApi('POST', '/api/student/hackathon/generate', { domain }, 200, { idea: 'generated' });
+  }, 1000);
+}
+
+/* ── K. POMODORO TIMER ── */
+function startPomodoroClock() {
+  if (pomodoroTimer) return;
+  showToast('⏳', 'Pomodoro focus session started. You got this!');
+  pomodoroTimer = setInterval(() => {
+    pomodoroSeconds--;
+    const min = String(Math.floor(pomodoroSeconds / 60)).padStart(2, '0');
+    const sec = String(pomodoroSeconds % 60).padStart(2, '0');
+    const el = document.getElementById('pomodoro-timer');
+    if (el) el.textContent = `${min}:${sec}`;
+    if (pomodoroSeconds <= 0) {
+      clearInterval(pomodoroTimer); pomodoroTimer = null;
+      showToast('🎉', '25 minutes done! Take a 5-minute break!');
+      speakMockText('Focus session complete! Great work. Take a five-minute break!');
+    }
+  }, 1000);
+}
+
+function resetPomodoroClock() {
+  if (pomodoroTimer) { clearInterval(pomodoroTimer); pomodoroTimer = null; }
+  pomodoroSeconds = 25 * 60;
+  const el = document.getElementById('pomodoro-timer');
+  if (el) el.textContent = '25:00';
+  showToast('⏹', 'Pomodoro timer reset to 25 minutes.');
+}
+
+function addStudyTaskMock() {
+  const val = (document.getElementById('study-task-title')?.value || '').trim();
+  if (!val) return;
+  SaarthiDB.productivity_tasks.push({ id: 'tsk_' + Date.now(), user_id: currentUserId, task_name: val, status: 'Pending', category: 'task' });
+  SaarthiDB.save();
+  document.getElementById('study-task-title').value = '';
+  renderStudentTasksRows();
+  showToast('⚡', 'Task added to your study log!');
+}
+
+function renderStudentTasksRows() {
+  const ul = document.getElementById('student-tasks-ul');
+  if (!ul) return;
+  const list = (SaarthiDB.productivity_tasks || []).filter(t => t.user_id === currentUserId && t.category === 'task');
+  if (!list.length) { ul.innerHTML = '<p style="color:#5a5a8a;font-style:italic;font-size:0.9rem;">No tasks yet. Add one above!</p>'; return; }
+  ul.innerHTML = list.map(t => `
+    <div role="listitem" style="background:#f3f4f6;padding:10px 14px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;">
+      <span style="font-weight:600;">${t.task_name}</span>
+      <button aria-label="Remove task ${t.task_name}" style="border:none;background:transparent;color:#ef4444;font-weight:700;cursor:pointer;" onclick="deleteStudyTask('${t.id}')">✕</button>
+    </div>`).join('');
+}
+
+function deleteStudyTask(id) {
+  SaarthiDB.productivity_tasks = SaarthiDB.productivity_tasks.filter(t => t.id !== id);
+  SaarthiDB.save();
+  renderStudentTasksRows();
+}
+
+/* ── L. VOICE COMPANION ── */
+function toggleVoiceSpeechCompanion() {
+  speechActive = !speechActive;
+  const btn = document.getElementById('voice-companion-btn');
+  const bubble = document.getElementById('voice-companion-bubble');
+  btn.setAttribute('aria-pressed', String(speechActive));
+  if (speechActive) {
+    btn.className = 'voice-trigger listening';
+    const msg = activeMode && personas[activeMode]
+      ? `Namaste! ${personas[activeMode].name} ready. How can I help?`
+      : 'Namaste! Saarthi AI listening. How can I help?';
+    speakMockText(msg);
+  } else {
+    btn.className = 'voice-trigger';
+    bubble.classList.add('hidden');
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+  }
+}
+
+function triggerCompanionVoiceReadout() {
+  const msg = activeMode && personas[activeMode]
+    ? `You are in ${personas[activeMode].name} Mode. Use the sidebar tabs to access all features.`
+    : 'Select a mode from the left menu to get started!';
+  speakMockText(msg);
+}
+
+function speakMockText(text) {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = activeMode === 'student' ? 'en-US' : 'hi-IN';
+    u.rate = activeMode === 'senior' ? 0.8 : 0.95;
+    u.pitch = activeMode === 'amma' ? 1.15 : 0.9;
+    window.speechSynthesis.speak(u);
+  }
+  const bubble = document.getElementById('voice-companion-bubble');
+  if (bubble) {
+    bubble.classList.remove('hidden');
+    bubble.textContent = text;
+    setTimeout(() => { if (!speechActive) bubble.classList.add('hidden'); }, 5000);
+  }
+}
+
+/* ── M. TOAST SYSTEM ── */
+function showToast(icon, message, duration = 4000) {
+  const container = document.getElementById('toast-container');
+  const toast = document.createElement('div');
+  toast.className = 'toast font-body';
+  toast.setAttribute('role', 'alert');
+  toast.innerHTML = `<span class="toast-icon">${icon}</span><span>${message}</span>`;
+  container.appendChild(toast);
+  setTimeout(() => { toast.classList.add('removing'); setTimeout(() => toast.remove(), 300); }, duration);
+}
+
+/* ── N. DEV CONSOLE ── */
+function toggleDevConsole() {
+  const panel = document.getElementById('dev-console');
+  const btn = document.getElementById('dev-console-toggle');
+  const isOpen = panel.classList.toggle('active');
+  panel.setAttribute('aria-hidden', String(!isOpen));
+  btn.setAttribute('aria-expanded', String(isOpen));
+}
+
+function openDevConsole() {
+  const panel = document.getElementById('dev-console');
+  panel.classList.add('active');
+  panel.setAttribute('aria-hidden', 'false');
+  document.getElementById('dev-console-toggle').setAttribute('aria-expanded', 'true');
+}
+
+function closeDevConsole() {
+  const panel = document.getElementById('dev-console');
+  panel.classList.remove('active');
+  panel.setAttribute('aria-hidden', 'true');
+  document.getElementById('dev-console-toggle').setAttribute('aria-expanded', 'false');
+}
+
+let currentConsoleTab = 'sql';
+function switchConsoleTab(tabKey) {
+  currentConsoleTab = tabKey;
+  ['sql','api','db'].forEach(t => {
+    const btn = document.getElementById('tab-console-' + t);
+    const panel = document.getElementById('console-' + t + '-panel');
+    if (btn) { btn.classList.toggle('active', t === tabKey); btn.setAttribute('aria-selected', String(t === tabKey)); }
+    if (panel) panel.classList.toggle('hidden', t !== tabKey);
+  });
+  if (tabKey === 'db') renderDBConsoleTable(document.getElementById('console-db-select')?.value || 'users');
+}
+
+function renderDBConsoleTable(tableKey) {
+  const table = document.getElementById('console-db-table');
+  const data = SaarthiDB[tableKey];
+  if (!data || !data.length) {
+    table.innerHTML = `<tr><td style="color:#9CA3AF;font-style:italic;">No records in [${tableKey}].</td></tr>`;
+    return;
+  }
+  const headers = Object.keys(data[0]);
+  table.innerHTML = `
+    <tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr>
+    ${data.map(row => `<tr>${headers.map(h => `<td title="${String(row[h]).slice(0,100)}">${String(typeof row[h] === 'object' ? JSON.stringify(row[h]) : row[h]).slice(0,40)}</td>`).join('')}</tr>`).join('')}`;
+}
+
+/* ── O. MISC UTILS ── */
+function changeLanguage(lang) {
+  showToast('🌐', `Language changed to ${lang}`);
+  document.documentElement.lang = lang === 'Hindi' ? 'hi' : lang === 'Tamil' ? 'ta' : lang === 'Telugu' ? 'te' : 'en';
+}
+
+function logoutMock() {
+  currentUserId = null;
+  userLockedMode = null;
+  activeMode = null;
+  localStorage.removeItem('saarthi_locked_mode');
+  document.body.className = '';
+  document.documentElement.style.cssText = '';
+  const authSection = document.getElementById('nav-auth-section');
+  if (authSection) authSection.innerHTML = '<button class="btn btn-royal" onclick="showAuthPage(\'login\')">Sign In 🙏</button>';
+  showToast('👋', 'Logged out successfully. Goodbye!');
+  showLandingPage();
+}
+
+/* ── P. SPLASH → INIT ── */
+window.addEventListener('load', () => {
+  // Restore locked mode
+  const savedMode = localStorage.getItem('saarthi_locked_mode');
+  if (savedMode && personas[savedMode]) userLockedMode = savedMode;
+
+  setTimeout(() => {
+    const splash = document.getElementById('splash-screen');
+    splash.classList.add('fade-out');
+    setTimeout(() => { splash.style.display = 'none'; }, 800);
+  }, 2000);
+});
+
+// Close mobile menu on outside click
+document.addEventListener('click', (e) => {
+  const menu = document.getElementById('nav-links');
+  const hamburger = document.getElementById('nav-hamburger');
+  if (menu.classList.contains('mobile-open') && !menu.contains(e.target) && !hamburger.contains(e.target)) {
+    menu.classList.remove('mobile-open');
+    document.getElementById('nav-actions').classList.remove('mobile-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  }
+});
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeAuthModal();
+    closeDevConsole();
+  }
+});
+</script>
+</body>
+</html>

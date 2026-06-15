@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saarthi — India's Trusted AI Companion</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #fff8f1;
+      overflow-x: hidden;
+      color: #1f2937;
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.14);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .mandala-bg {
+      position: absolute;
+      opacity: 0.04;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-gradient {
+      background:
+      radial-gradient(circle at top left, rgba(255,153,0,0.25), transparent 40%),
+      radial-gradient(circle at bottom right, rgba(255,94,0,0.18), transparent 35%),
+      linear-gradient(135deg,#fff8f1,#fff3e6,#fffdf7);
+    }
+
+    .floating {
+      animation: floating 5s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0%,100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .pulse-glow {
+      animation: pulseGlow 2.5s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 rgba(255,153,0,0.5); }
+      50% { box-shadow: 0 0 40px rgba(255,153,0,0.35); }
+      100% { box-shadow: 0 0 0 rgba(255,153,0,0.5); }
+    }
+
+    .card-hover:hover {
+      transform: translateY(-8px);
+      transition: 0.35s ease;
+    }
+
+    .mehendi-border {
+      border: 1px solid rgba(180,83,9,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mehendi-border::before {
+      content: "✦ ✦ ✦";
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      opacity: 0.12;
+      font-size: 14px;
+      color: #b45309;
+    }
+
+    .voice-orb {
+      width: 90px;
+      height: 90px;
+      border-radius: 999px;
+      background: linear-gradient(135deg,#ff8a00,#ff4d00);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 60px rgba(255,128,0,0.45);
+      animation: breathing 3s infinite;
+    }
+
+    @keyframes breathing {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .wave span {
+      display: inline-block;
+      width: 4px;
+      margin: 0 2px;
+      border-radius: 999px;
+      background: white;
+      animation: wave 1s infinite ease-in-out;
+    }
+
+    .wave span:nth-child(2) { animation-delay: .1s; }
+    .wave span:nth-child(3) { animation-delay: .2s; }
+    .wave span:nth-child(4) { animation-delay: .3s; }
+
+    @keyframes wave {
+      0%,100% { height: 12px; }
+      50% { height: 30px; }
+    }
+
+    .section-title {
+      font-size: 2.6rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .mode-card {
+      min-height: 420px;
+      border-radius: 32px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .mode-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.5), transparent 50%);
+    }
+
+    .mode-content {
+      position: relative;
+      z-index: 10;
+    }
+
+    .bottom-nav {
+      box-shadow: 0 -10px 40px rgba(0,0,0,0.08);
+    }
+
+    .rangoli-dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,140,0,0.3);
+      animation: floating 5s infinite;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 left-0 w-full z-50 px-6 lg:px-16 py-5">
+    <div class="glass rounded-full px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center text-white text-xl shadow-xl">
+          🙏
+        </div>
+        <div>
+          <h1 class="font-bold text-2xl">Saarthi</h1>
+          <p class="text-xs text-gray-500">Technology Made Human</p>
+        </div>
+      </div>
+
+      <div class="hidden lg:flex items-center gap-8 text-sm font-medium">
+        <a href="#features">Features</a>
+        <a href="#modes">Modes</a>
+        <a href="#safety">Safety</a>
+        <a href="#assistant">Assistant</a>
+      </div>
+
+      <button class="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-full font-medium shadow-xl hover:scale-105 transition">
+        Try Saarthi
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-gradient min-h-screen flex items-center relative overflow-hidden px-6 lg:px-20 pt-28">
+
+    <div class="mandala-bg top-10 left-10 text-[300px]">✺</div>
+    <div class="mandala-bg bottom-0 right-0 text-[240px]">❉</div>
+
+    <div class="grid lg:grid-cols-2 gap-16 items-center relative z-10 w-full">
+
+      <!-- LEFT -->
+      <div>
+        <div class="inline-flex items-center gap-2 bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm mb-6">
+          🇮🇳 AI for the Next Billion Indian Users
+        </div>
+
+        <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight text-gray-900">
+          India's <span class="text-orange-500">Trusted</span><br>
+          AI Companion
+        </h1>
+
+        <p class="text-lg text-gray-600 mt-8 leading-relaxed max-w-xl">
+          Saarthi helps everyday Indians confidently understand technology, avoid scams, learn AI, and navigate the digital world through voice-first personalized guidance.
+        </p>
+
+        <div class="flex flex-wrap gap-5 mt-10">
+          <button class="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-full font-semibold shadow-2xl hover:scale-105 transition">
+            Start Journey
+          </button>
+
+          <button class="glass px-8 py-4 rounded-full font-semibold">
+            Watch Demo
+          </button>
+        </div>
+
+        <div class="grid grid-cols-3 gap-5 mt-14">
+          <div class="glass rounded-3xl p-5 text-center">
+            <h3 class="text-3xl font-bold text-orange-500">12+</h3>
+            <p class="text-sm text-gray-600 mt-1">Indian Languages</p>
+          </div>
+
+          <div class="glass rounded-3xl p-5 text-center">
+            <h3 class="text-3xl font-bold text-orange-500">AI</h3>
+            <p class="text-sm text-gray-600 mt-1">Voice Companion</p>
+          </div>
+
+          <div class="glass rounded-3xl p-5 text-center">
+            <h3 class="text-3xl font-bold text-orange-500">24/7</h3>
+            <p class="text-sm text-gray-600 mt-1">Digital Guidance</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="relative flex justify-center items-center">
+
+        <div class="absolute w-[500px] h-[500px] rounded-full bg-orange-300 blur-3xl opacity-20"></div>
+
+        <div class="glass rounded-[40px] p-8 max-w-lg w-full floating mehendi-border">
+          <div class="flex items-center justify-between mb-8">
+            <div>
+              <h3 class="text-2xl font-bold">Vanakkam 👋</h3>
+              <p class="text-gray-500">How can Saarthi help today?</p>
+            </div>
+
+            <div class="voice-orb pulse-glow">
+              <div class="wave flex items-end h-10">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white/70 rounded-3xl p-5 card-hover transition">
+              <div class="text-3xl">🛡️</div>
+              <h4 class="font-semibold mt-4">Scam Safety</h4>
+              <p class="text-sm text-gray-500 mt-1">Analyze suspicious messages instantly.</p>
+            </div>
+
+            <div class="bg-white/70 rounded-3xl p-5 card-hover transition">
+              <div class="text-3xl">🎙️</div>
+              <h4 class="font-semibold mt-4">Voice Assistant</h4>
+              <p class="text-sm text-gray-500 mt-1">Talk naturally in your language.</p>
+            </div>
+
+            <div class="bg-white/70 rounded-3xl p-5 card-hover transition">
+              <div class="text-3xl">📚</div>
+              <h4 class="font-semibold mt-4">AI Learning</h4>
+              <p class="text-sm text-gray-500 mt-1">Understand AI simply and safely.</p>
+            </div>
+
+            <div class="bg-white/70 rounded-3xl p-5 card-hover transition">
+              <div class="text-3xl">💬</div>
+              <h4 class="font-semibold mt-4">Explain This</h4>
+              <p class="text-sm text-gray-500 mt-1">Upload screenshots for easy explanations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODES -->
+  <section id="modes" class="py-28 px-6 lg:px-20 relative overflow-hidden">
+
+    <div class="text-center mb-20">
+      <p class="text-orange-500 font-semibold uppercase tracking-[0.3em] mb-4">PERSONALIZED EXPERIENCES</p>
+      <h2 class="section-title">Designed For Every Indian User</h2>
+      <p class="text-gray-500 max-w-3xl mx-auto mt-5 text-lg">
+        Saarthi creates different emotional and digital experiences for every type of user.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-10">
+
+      <!-- Amma -->
+      <div class="mode-card bg-gradient-to-br from-[#fff1da] to-[#ffd6b8] p-8 card-hover transition">
+        <div class="mode-content h-full flex flex-col justify-between">
+          <div>
+            <div class="text-6xl mb-6">🌸</div>
+            <h3 class="text-4xl font-bold text-[#7c2d12]">Amma Mode</h3>
+            <p class="text-[#7c2d12]/80 mt-4 text-lg leading-relaxed">
+              Warm voice-first digital guidance designed for mothers, homemakers, and first-time tech users.
+            </p>
+          </div>
+
+          <div class="space-y-3">
+            <div class="glass rounded-2xl p-4">🛒 Grocery Assistant</div>
+            <div class="glass rounded-2xl p-4">🛡️ Scam Detection</div>
+            <div class="glass rounded-2xl p-4">💬 WhatsApp Guidance</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Senior -->
+      <div class="mode-card bg-gradient-to-br from-[#f4f6ff] to-[#dfeeff] p-8 card-hover transition">
+        <div class="mode-content h-full flex flex-col justify-between">
+          <div>
+            <div class="text-6xl mb-6">📿</div>
+            <h3 class="text-4xl font-bold text-[#1e3a8a]">Senior Mode</h3>
+            <p class="text-[#1e3a8a]/80 mt-4 text-lg leading-relaxed">
+              Calm, accessible, and safe technology guidance built for senior citizens.
+            </p>
+          </div>
+
+          <div class="space-y-3">
+            <div class="glass rounded-2xl p-4">📞 One-Tap Help</div>
+            <div class="glass rounded-2xl p-4">🛡️ Banking Safety</div>
+            <div class="glass rounded-2xl p-4">📱 Explain This Screen</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Student -->
+      <div class="mode-card bg-gradient-to-br from-[#171b34] to-[#34215e] p-8 card-hover transition text-white">
+        <div class="mode-content h-full flex flex-col justify-between">
+          <div>
+            <div class="text-6xl mb-6">⚡</div>
+            <h3 class="text-4xl font-bold">Student Mode</h3>
+            <p class="text-white/70 mt-4 text-lg leading-relaxed">
+              Learn AI, build skills, improve productivity, and prepare for future careers.
+            </p>
+          </div>
+
+          <div class="space-y-3">
+            <div class="glass rounded-2xl p-4">🤖 AI Learning</div>
+            <div class="glass rounded-2xl p-4">📄 Resume Builder</div>
+            <div class="glass rounded-2xl p-4">🚀 Career Roadmaps</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Business -->
+      <div class="mode-card bg-gradient-to-br from-[#effff7] to-[#d3ffe9] p-8 card-hover transition">
+        <div class="mode-content h-full flex flex-col justify-between">
+          <div>
+            <div class="text-6xl mb-6">📈</div>
+            <h3 class="text-4xl font-bold text-[#064e3b]">Business Mode</h3>
+            <p class="text-[#064e3b]/80 mt-4 text-lg leading-relaxed">
+              AI-powered growth tools for Indian shopkeepers and entrepreneurs.
+            </p>
+          </div>
+
+          <div class="space-y-3">
+            <div class="glass rounded-2xl p-4">📣 AI Marketing</div>
+            <div class="glass rounded-2xl p-4">💬 Customer Replies</div>
+            <div class="glass rounded-2xl p-4">📊 Smart Insights</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPLAIN THIS -->
+  <section id="safety" class="py-28 px-6 lg:px-20 bg-gradient-to-br from-[#fff9f2] to-[#fff1e8] relative overflow-hidden">
+
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <div>
+        <p class="text-orange-500 font-semibold uppercase tracking-[0.3em] mb-4">MOST POWERFUL FEATURE</p>
+        <h2 class="section-title">Explain This</h2>
+
+        <p class="text-lg text-gray-600 mt-6 leading-relaxed max-w-xl">
+          Upload scam messages, screenshots, confusing banking screens, or WhatsApp forwards. Saarthi explains everything simply in your preferred language.
+        </p>
+
+        <div class="space-y-5 mt-10">
+          <div class="glass rounded-3xl p-5 flex gap-4 items-start">
+            <div class="text-3xl">📸</div>
+            <div>
+              <h4 class="font-semibold text-lg">Upload Screenshot</h4>
+              <p class="text-gray-500">Drag and drop any image or suspicious message.</p>
+            </div>
+          </div>
+
+          <div class="glass rounded-3xl p-5 flex gap-4 items-start">
+            <div class="text-3xl">🧠</div>
+            <div>
+              <h4 class="font-semibold text-lg">AI Analysis</h4>
+              <p class="text-gray-500">AI detects scams and explains risks clearly.</p>
+            </div>
+          </div>
+
+          <div class="glass rounded-3xl p-5 flex gap-4 items-start">
+            <div class="text-3xl">🎙️</div>
+            <div>
+              <h4 class="font-semibold text-lg">Voice Guidance</h4>
+              <p class="text-gray-500">Listen to explanations in Tamil, Hindi, and more.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass rounded-[40px] p-8 mehendi-border">
+        <div class="border-2 border-dashed border-orange-300 rounded-[30px] p-10 text-center bg-white/40">
+          <div class="text-6xl mb-6">📤</div>
+          <h3 class="text-2xl font-bold">Drop Screenshot Here</h3>
+          <p class="text-gray-500 mt-3">Analyze WhatsApp scams, SMS, UPI alerts, and fake links.</p>
+
+          <button class="mt-8 bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-full font-semibold shadow-xl">
+            Upload & Analyze
+          </button>
+        </div>
+
+        <div class="mt-8 glass rounded-3xl p-6 bg-white/60">
+          <div class="flex items-center justify-between mb-4">
+            <h4 class="font-bold text-xl">⚠ Scam Probability</h4>
+            <span class="text-red-500 font-bold">82%</span>
+          </div>
+
+          <div class="w-full bg-gray-200 h-4 rounded-full overflow-hidden">
+            <div class="bg-gradient-to-r from-orange-400 to-red-500 h-full rounded-full w-[82%]"></div>
+          </div>
+
+          <p class="text-gray-600 mt-6 leading-relaxed">
+            This message requests an OTP and includes a suspicious payment link. Saarthi recommends avoiding interaction and blocking the sender.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AI ASSISTANT -->
+  <section id="assistant" class="py-28 px-6 lg:px-20 bg-[#fffdf9]">
+
+    <div class="text-center max-w-4xl mx-auto">
+      <p class="text-orange-500 font-semibold uppercase tracking-[0.3em] mb-4">VOICE-FIRST AI</p>
+      <h2 class="section-title">Talk Naturally With Saarthi</h2>
+
+      <p class="text-gray-600 text-lg mt-6 leading-relaxed">
+        Saarthi is designed like a trusted companion — not a robotic chatbot. Speak naturally and receive emotional, personalized, and culturally familiar guidance.
+      </p>
+
+      <div class="mt-16 flex justify-center">
+        <div class="voice-orb pulse-glow">
+          <div class="wave flex items-end h-10">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mt-16">
+
+        <div class="glass rounded-[32px] p-8 card-hover transition">
+          <div class="text-5xl">🗣️</div>
+          <h3 class="text-2xl font-bold mt-6">Regional Languages</h3>
+          <p class="text-gray-500 mt-4">Talk to Saarthi in Tamil, Hindi, Telugu, Kannada, and more.</p>
+        </div>
+
+        <div class="glass rounded-[32px] p-8 card-hover transition">
+          <div class="text-5xl">🧡</div>
+          <h3 class="text-2xl font-bold mt-6">Emotional AI</h3>
+          <p class="text-gray-500 mt-4">Warm, human-centered responses designed for comfort and trust.</p>
+        </div>
+
+        <div class="glass rounded-[32px] p-8 card-hover transition">
+          <div class="text-5xl">⚙️</div>
+          <h3 class="text-2xl font-bold mt-6">Adaptive Experience</h3>
+          <p class="text-gray-500 mt-4">Different personalities and UI systems for every user type.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#1a120b] text-white py-20 px-6 lg:px-20 relative overflow-hidden">
+
+    <div class="absolute inset-0 opacity-5 text-[260px] flex items-center justify-center">
+      ✺
+    </div>
+
+    <div class="grid lg:grid-cols-4 gap-12 relative z-10">
+
+      <div>
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-14 h-14 rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center text-2xl">
+            🙏
+          </div>
+          <div>
+            <h3 class="text-3xl font-bold">Saarthi</h3>
+            <p class="text-orange-200 text-sm">Technology Made Human</p>
+          </div>
+        </div>
+
+        <p class="text-white/70 leading-relaxed">
+          Building digital confidence for the next billion Indian users through AI-powered guidance, education, and accessibility.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-xl mb-5">Features</h4>
+        <div class="space-y-3 text-white/70">
+          <p>Voice AI</p>
+          <p>Scam Detection</p>
+          <p>AI Learning</p>
+          <p>Explain This</p>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-xl mb-5">Modes</h4>
+        <div class="space-y-3 text-white/70">
+          <p>Amma Mode</p>
+          <p>Senior Mode</p>
+          <p>Student Mode</p>
+          <p>Business Mode</p>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-xl mb-5">Vision</h4>
+        <p class="text-white/70 leading-relaxed">
+          AI for the next billion Indian users.
+        </p>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 mt-14 pt-8 text-center text-white/50 text-sm relative z-10">
+      © 2026 Saarthi — India's Trusted AI Companion
+    </div>
+  </footer>
+
+  <!-- MOBILE BOTTOM NAV -->
+  <div class="fixed bottom-5 left-1/2 -translate-x-1/2 w-[92%] lg:hidden glass rounded-full px-6 py-4 flex justify-between items-center bottom-nav z-50">
+    <div class="text-center text-orange-500">
+      <div>🏠</div>
+      <p class="text-xs mt-1">Home</p>
+    </div>
+
+    <div class="text-center text-gray-500">
+      <div>📚</div>
+      <p class="text-xs mt-1">Learn</p>
+    </div>
+
+    <div class="text-center text-gray-500">
+      <div>🛡️</div>
+      <p class="text-xs mt-1">Safety</p>
+    </div>
+
+    <div class="text-center text-gray-500">
+      <div>🎙️</div>
+      <p class="text-xs mt-1">Assistant</p>
+    </div>
+
+    <div class="text-center text-gray-500">
+      <div>👤</div>
+      <p class="text-xs mt-1">Profile</p>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
