@@ -4,14 +4,17 @@ import { ModeProvider } from './contexts/ModeContext';
 import Landing from './components/pages/Landing';
 import Login from './components/pages/Login';
 import Dashboard from './components/pages/Dashboard';
+import { Toast } from './components/shared/Toast';
+import { useToast } from './hooks/useToast';
 import './styles/globals.css';
 
 function AppContent() {
   const { isAuthenticated, loading } = useContext(AuthContext);
   const [page, setPage] = useState('landing');
+  const { toast } = useToast();
 
   if (loading) {
-    return <div style={{ padding: '20px', textAlign: 'center' }}>Loading...</div>;
+    return <div style={{ padding: '20px', textAlign: 'center' }}>⏳ Loading...</div>;
   }
 
   if (!isAuthenticated) {
@@ -24,11 +27,17 @@ function AppContent() {
             onSwitchTab={() => setPage('register')}
           />
         )}
+        <Toast icon={toast?.icon} message={toast?.message} />
       </div>
     );
   }
 
-  return <Dashboard />;
+  return (
+    <div>
+      <Dashboard />
+      <Toast icon={toast?.icon} message={toast?.message} />
+    </div>
+  );
 }
 
 export default function App() {
