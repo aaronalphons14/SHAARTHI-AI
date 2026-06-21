@@ -11,20 +11,25 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const restoreSession = async () => {
       if (authService.isAuthenticated()) {
-        // Try to restore from localStorage first for instant UI
         const cachedUser = authService.getCurrentUser();
         if (cachedUser) {
           setUser(cachedUser);
           setIsAuthenticated(true);
         }
 
-        // Then verify with backend
+        // Skip backend call for demo tokens
+        const token = authService.getToken();
+        if (token?.startsWith('demo_token_')) {
+          setLoading(false);
+          return;
+        }
+
+        // Verify with backend for real tokens
         const result = await authService.getProfile();
         if (result.success) {
           setUser(result.user);
           setIsAuthenticated(true);
         } else {
-          // Token expired or invalid
           authService.logout();
           setUser(null);
           setIsAuthenticated(false);

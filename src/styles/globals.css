@@ -169,37 +169,38 @@ img { max-width: 100%; display: block; }
 .indian-art-bg {
   position: relative;
 }
+/* Paisley / Mango motif — richer, more visible */
 .indian-art-bg::before {
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 10 C55 10, 70 25, 70 40 C70 55, 55 70, 40 70 C25 70, 20 55, 25 40 C30 25, 25 10, 40 10Z' fill='none' stroke='%23800020' stroke-width='1.5'/%3E%3Ccircle cx='40' cy='35' r='4' fill='%23D4AF37' opacity='0.5'/%3E%3C/svg%3E");
-  background-size: 80px 80px;
+  opacity: 0.09;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M50 8 C68 8, 85 28, 85 50 C85 72, 68 88, 50 88 C32 88, 26 70, 30 50 C34 30, 32 8, 50 8Z' fill='none' stroke='%23800020' stroke-width='1.8'/%3E%3Cpath d='M50 20 C62 20, 74 34, 74 50 C74 66, 62 78, 50 78 C38 78, 34 66, 36 50 C38 34, 38 20, 50 20Z' fill='none' stroke='%23D4AF37' stroke-width='1'/%3E%3Ccircle cx='50' cy='42' r='5' fill='%23D4AF37' opacity='0.6'/%3E%3Ccircle cx='50' cy='42' r='2' fill='%23800020' opacity='0.8'/%3E%3Cpath d='M44 30 Q50 18 56 30' fill='none' stroke='%23800020' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 100px 100px;
   pointer-events: none;
   z-index: 0;
 }
 
-/* Lotus pattern overlay */
+/* Lotus pattern overlay — more visible */
 .lotus-art-bg::before {
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cellipse cx='60' cy='60' rx='18' ry='35' fill='none' stroke='%23E75480' stroke-width='1' transform='rotate(0 60 60)'/%3E%3Cellipse cx='60' cy='60' rx='18' ry='35' fill='none' stroke='%23E75480' stroke-width='1' transform='rotate(45 60 60)'/%3E%3Cellipse cx='60' cy='60' rx='18' ry='35' fill='none' stroke='%23E75480' stroke-width='1' transform='rotate(90 60 60)'/%3E%3Cellipse cx='60' cy='60' rx='18' ry='35' fill='none' stroke='%23E75480' stroke-width='1' transform='rotate(135 60 60)'/%3E%3Ccircle cx='60' cy='60' r='6' fill='%23D4AF37' opacity='0.4'/%3E%3C/svg%3E");
-  background-size: 120px 120px;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cellipse cx='70' cy='70' rx='20' ry='38' fill='none' stroke='%23E75480' stroke-width='1.4' transform='rotate(0 70 70)'/%3E%3Cellipse cx='70' cy='70' rx='20' ry='38' fill='none' stroke='%23800020' stroke-width='1.1' transform='rotate(45 70 70)'/%3E%3Cellipse cx='70' cy='70' rx='20' ry='38' fill='none' stroke='%23E75480' stroke-width='1.4' transform='rotate(90 70 70)'/%3E%3Cellipse cx='70' cy='70' rx='20' ry='38' fill='none' stroke='%23800020' stroke-width='1.1' transform='rotate(135 70 70)'/%3E%3Ccircle cx='70' cy='70' r='10' fill='none' stroke='%23D4AF37' stroke-width='1.5'/%3E%3Ccircle cx='70' cy='70' r='4' fill='%23D4AF37' opacity='0.7'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
   pointer-events: none;
   z-index: 0;
 }
 
-/* Jali / Geometric lattice overlay */
+/* Jali / Geometric lattice overlay — more visible */
 .jali-art-bg::before {
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='none' stroke='%23D4AF37' stroke-width='0.8'/%3E%3Ccircle cx='30' cy='30' r='8' fill='none' stroke='%23800020' stroke-width='0.6'/%3E%3C/svg%3E");
-  background-size: 60px 60px;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='70' viewBox='0 0 70 70'%3E%3Cpath d='M35 2L68 35L35 68L2 35Z' fill='none' stroke='%23D4AF37' stroke-width='1.2'/%3E%3Cpath d='M35 14L56 35L35 56L14 35Z' fill='none' stroke='%23800020' stroke-width='0.9'/%3E%3Ccircle cx='35' cy='35' r='9' fill='none' stroke='%23D4AF37' stroke-width='1'/%3E%3Ccircle cx='35' cy='35' r='3' fill='%23800020' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 70px 70px;
   pointer-events: none;
   z-index: 0;
 }
@@ -739,4 +740,80 @@ select.saarthi-input {
 @media (max-width: 480px) {
   body { font-size: 14px; }
   .saarthi-card { padding: 16px; }
+}
+
+/* Enhanced body background */
+body {
+  background: linear-gradient(160deg, #FFF8E7 0%, #FFF3D4 50%, #FFF8E7 100%) !important;
+  background-attachment: fixed !important;
+}
+
+/* ════════════════════════════════════════════
+   GLOBAL PAGE BACKGROUNDS — rich warm ivory
+════════════════════════════════════════════ */
+html {
+  background: #FFF8E7;
+}
+
+body {
+  background: linear-gradient(160deg, #FFF8E7 0%, #FFF3D4 50%, #FFF8E7 100%) !important;
+  background-attachment: fixed !important;
+  min-height: 100vh;
+}
+
+/* Dashboard content background */
+.dashboard-main-content {
+  background: transparent;
+}
+
+/* Add subtle paisley overlay to the whole app */
+#root::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M50 8 C68 8, 85 28, 85 50 C85 72, 68 88, 50 88 C32 88, 26 70, 30 50 C34 30, 32 8, 50 8Z' fill='none' stroke='%23800020' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='42' r='4' fill='%23D4AF37' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 100px 100px;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* Spin keyframe */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ════════════════════════════════════════════
+   DASHBOARD LAYOUT — mobile responsive
+════════════════════════════════════════════ */
+.dashboard-mobile-bar {
+  display: none !important;
+}
+.dashboard-main-content {
+  margin-left: 260px;
+}
+@media (max-width: 900px) {
+  .dashboard-mobile-bar {
+    display: flex !important;
+  }
+  .dashboard-main-content {
+    margin-left: 0 !important;
+  }
+  .dashboard-sidebar {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: 280px;
+    transform: translateX(-100%);
+    z-index: 200;
+    transition: transform 0.3s ease;
+  }
+  .dashboard-sidebar.open {
+    transform: translateX(0) !important;
+  }
 }
